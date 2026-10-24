@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>情景练习 · 深色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#14122B}
+a{color:#F4F2FF;text-decoration:none}a:hover{color:#FFE27A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #14122B; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #F4F2FF;">
+
+  <div style="padding: 62px 20px 120px; display: flex; flex-direction: column; gap: 16px;">
+
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 30px; font-weight: 600;">情景练习</div>
+      <div style="font-size: 15px; font-weight: 600; color: #ABA7CC;">像真的站在那儿一样，把英语用出来</div>
+    </div>
+
+    <div style="display: flex; gap: 8px; overflow-x: auto; margin: 0 -20px; padding: 0 20px;">
+      <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="5">
+        <button onClick="{{ tb.pick }}" aria-pressed="{{ tb.on }}" style="flex: 0 0 auto; height: 44px; padding: 0 18px; border-radius: 22px; border: 0; font-family: inherit; font-size: 14px; font-weight: 800; background: {{ tb.bg }}; color: {{ tb.fg }};">{{ tb.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="background: #FFC845; color: #1E1B3A; border-radius: 30px; padding: 18px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 6px 0 #B9841A;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: inline-flex; align-self: flex-start; height: 26px; align-items: center; padding: 0 10px; border-radius: 13px; background: #1E1B3A; color: #FFE27A; font-size: 12px; font-weight: 800;">今日推荐 · 生活</div>
+          <div style="font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 24px; font-weight: 600; line-height: 1.2; margin-top: 4px;">在咖啡店点单</div>
+          <div style="font-size: 13px; font-weight: 700; color: #4A3A00;">店员由 Milo 扮演 · 约 5 分钟</div>
+        </div>
+        <svg width="64" height="64" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFFFFF"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 29c3 4 11 4 14 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M10 10h28l-2 5H12z" fill="#1E1B3A"/></svg>
+      </div>
+      <div style="background: rgba(255,255,255,0.6); border-radius: 20px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 13px; font-weight: 800; color: #4A3A00;">你的小任务</div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700;">
+          <span style="width: 22px; height: 22px; border-radius: 11px; background: #1E1B3A; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          点一杯中杯拿铁
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700;">
+          <span style="width: 22px; height: 22px; border-radius: 11px; border: 2px solid #1E1B3A; box-sizing: border-box; flex: 0 0 auto;"></span>
+          请店员换成燕麦奶
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700;">
+          <span style="width: 22px; height: 22px; border-radius: 11px; border: 2px solid #1E1B3A; box-sizing: border-box; flex: 0 0 auto;"></span>
+          问一下 Wi-Fi 密码
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <a href="ChatDark.dc.html" style="height: 48px; border-radius: 24px; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 800;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+          打字练
+        </a>
+        <a href="VoiceDark.dc.html" style="height: 48px; border-radius: 24px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 800;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          开口练
+        </a>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+
+      <a href="ChatDark.dc.html" style="background: #211E3D; border: 1.5px solid #38345E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 18px; min-height: 128px; box-sizing: border-box;">
+        <span style="width: 44px; height: 44px; border-radius: 15px; background: #5ED3A8; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1B3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a4 4 0 0 0 8 0v-2"/><circle cx="19" cy="12" r="2"/></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-size: 16px; font-weight: 800;">看医生</div>
+          <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">描述症状 · 中等</div>
+        </div>
+      </a>
+
+      <a href="ChatDark.dc.html" style="background: #211E3D; border: 1.5px solid #38345E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 18px; min-height: 128px; box-sizing: border-box;">
+        <span style="width: 44px; height: 44px; border-radius: 15px; background: #FF8C69; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1B3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-size: 16px; font-weight: 800;">租房看房</div>
+          <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">问房租和押金 · 中等</div>
+        </div>
+      </a>
+
+      <a href="ChatDark.dc.html" style="background: #211E3D; border: 1.5px solid #38345E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 18px; min-height: 128px; box-sizing: border-box;">
+        <span style="width: 44px; height: 44px; border-radius: 15px; background: #B3A6FF; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1B3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/><path d="M16 11l2 2 4-4"/></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-size: 16px; font-weight: 800;">工作面试</div>
+          <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">自我介绍 · 较难</div>
+        </div>
+      </a>
+
+      <a href="ChatDark.dc.html" style="background: #211E3D; border: 1.5px solid #38345E; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 18px; min-height: 128px; box-sizing: border-box;">
+        <span style="width: 44px; height: 44px; border-radius: 15px; background: #FFC845; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1B3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-size: 16px; font-weight: 800;">机场值机</div>
+          <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">托运和选座 · 简单</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: linear-gradient(to bottom, rgba(20,18,43,0), #14122B 70%); pointer-events: none;" aria-hidden="true"></div>
+  <nav aria-label="主导航" style="position: absolute; left: 20px; right: 20px; bottom: 30px; height: 72px; border-radius: 36px; background: #1E1B38; display: flex; align-items: center; justify-content: space-between; padding: 8px; box-sizing: border-box; box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 18px 36px rgba(0,0,0,0.5);">
+    <a href="MainDark.dc.html" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+      聊天
+    </a>
+    <a href="ScenesDark.dc.html" aria-current="page" style="height: 56px; padding: 0 20px 0 16px; border-radius: 28px; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 0 #B89A3A;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5" fill="currentColor"/></svg>
+      练习
+    </a>
+    <a href="CommunityDark.dc.html" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      社区
+    </a>
+    <a href="SpellDark.dc.html" aria-label="词本，6 个待复习" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC; position: relative;">
+      <span style="position: absolute; top: 6px; right: 14px; width: 10px; height: 10px; border-radius: 5px; background: #FF8C69; box-shadow: 0 0 0 2.5px #1E1B38;" aria-hidden="true"></span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="14" rx="3"/><path d="M8 3h10a3 3 0 0 1 3 3v10"/></svg>
+      词本
+    </a>
+    <a href="ReadingDark.dc.html" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v17H5.5A2.5 2.5 0 0 1 3 17.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H13v17h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg>
+      阅读
+    </a>
+  </nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 0 };
+  }
+  renderVals() {
+    const labels = ['全部', '生活', '出行', '职场', '社交'];
+    return {
+      tabs: labels.map((l, i) => ({
+        label: l,
+        on: i === this.state.tab,
+        bg: i === this.state.tab ? '#F4F2FF' : '#211E3D',
+        fg: i === this.state.tab ? '#14122B' : '#F4F2FF',
+        pick: () => this.setState({ tab: i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

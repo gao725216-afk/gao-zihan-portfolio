@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>语音聊天 · 咖啡店点单</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1B3A;text-decoration:none}a:hover{color:#5B48F2}
+@keyframes vpulse{0%{transform:scale(0.85);opacity:0.55}100%{transform:scale(1.35);opacity:0}}
+@keyframes vbar{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFC845; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #1E1B3A; display: flex; flex-direction: column; padding: 54px 0 34px;">
+
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0 16px; height: 52px;">
+    <a href="Scenes.dc.html" aria-label="收起" style="width: 44px; height: 44px; border-radius: 22px; background: rgba(255,255,255,0.55); display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+      <div style="font-size: 16px; font-weight: 800;">咖啡店点单</div>
+      <div style="font-size: 12px; font-weight: 700; color: #4A3A00;">语音 · 02:14</div>
+    </div>
+    <div style="height: 44px; padding: 0 14px; border-radius: 22px; background: #1E1B3A; color: #FFE27A; display: flex; align-items: center; font-family: 'Fredoka', sans-serif; font-size: 16px; font-weight: 600;">任务 1/3</div>
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; position: relative;">
+    <div style="width: 210px; height: 210px; position: relative; display: flex; align-items: center; justify-content: center;">
+      <div style="position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF; animation: vpulse 2.4s ease-out infinite;"></div>
+      <div style="position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF; animation: vpulse 2.4s ease-out 1.2s infinite;"></div>
+      <svg width="168" height="168" viewBox="0 0 48 48" style="position: relative;" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFFFFF"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 28q7 7 14 0z" fill="#1E1B3A"/><path d="M10 10h28l-2 5H12z" fill="#1E1B3A"/></svg>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800;">
+      <div style="display: flex; gap: 3px; align-items: center; height: 18px;">
+        <span style="width: 4px; height: 18px; border-radius: 2px; background: #1E1B3A; animation: vbar 0.9s ease-in-out infinite;"></span>
+        <span style="width: 4px; height: 18px; border-radius: 2px; background: #1E1B3A; animation: vbar 0.9s ease-in-out 0.15s infinite;"></span>
+        <span style="width: 4px; height: 18px; border-radius: 2px; background: #1E1B3A; animation: vbar 0.9s ease-in-out 0.3s infinite;"></span>
+        <span style="width: 4px; height: 18px; border-radius: 2px; background: #1E1B3A; animation: vbar 0.9s ease-in-out 0.45s infinite;"></span>
+      </div>
+      Milo 正在说
+    </div>
+  </div>
+
+  <div style="margin: 0 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 12px; font-weight: 800; color: #5E5B78;">你刚才说</div>
+      <div style="font-size: 17px; font-weight: 700; line-height: 1.5;">Can I get a <span style="border-bottom: 3px dotted #E2643F; background: #FFEDE5; border-radius: 4px; padding: 0 2px;">medium</span> latte, please?</div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px; background: #FFF5EC; border-radius: 14px; padding: 8px 10px;">
+        <button aria-label="听标准发音" style="width: 32px; height: 32px; border-radius: 16px; border: 0; background: #FF8C69; color: #1E1B3A; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <div style="font-size: 13px; font-weight: 700; color: #5C1D08;">medium 重音在前：<span style="font-weight: 800;">/ˈmiːdiəm/</span>，整句很流畅</div>
+      </div>
+    </div>
+    <div style="background: #1E1B3A; color: #FFFFFF; border-radius: 24px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 18px; font-weight: 700; line-height: 1.45;">Sure! Would you like regular milk or oat milk?</div>
+      <sc-if value="{{ sub }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 14px; color: #C9C5F0; line-height: 1.45;">好的！要普通牛奶还是燕麦奶？</div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="margin-top: 22px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between;">
+    <button onClick="{{ toggleSub }}" aria-pressed="{{ sub }}" aria-label="中文字幕" style="width: 56px; height: 56px; border-radius: 28px; border: 0; background: {{ subBg }}; color: {{ subFg }}; font-family: inherit; font-size: 15px; font-weight: 800;">字幕</button>
+    <button aria-label="提示我怎么回答" style="width: 56px; height: 56px; border-radius: 28px; border: 0; background: rgba(255,255,255,0.6); color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+    </button>
+    <button aria-label="按住说话" style="width: 84px; height: 84px; border-radius: 42px; border: 0; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 0 #0D0B22;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+    </button>
+    <a href="Chat.dc.html" aria-label="转为文字聊天" style="width: 56px; height: 56px; border-radius: 28px; background: rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+    </a>
+    <a href="Summary.dc.html" aria-label="结束通话" style="width: 56px; height: 56px; border-radius: 28px; background: #C42B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </a>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sub: true };
+  }
+  renderVals() {
+    const on = this.state.sub;
+    return {
+      sub: on,
+      subBg: on ? '#1E1B3A' : 'rgba(255,255,255,0.6)',
+      subFg: on ? '#FFE27A' : '#1E1B3A',
+      toggleSub: () => this.setState({ sub: !on })
+    };
+  }
+}
+</script>
+</body>
+</html>

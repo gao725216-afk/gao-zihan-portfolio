@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>社区 · 深色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#14122B}
+a{color:#F4F2FF;text-decoration:none}a:hover{color:#FFE27A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #14122B; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #F4F2FF;">
+
+  <div style="padding: 60px 16px 130px; display: flex; flex-direction: column; gap: 14px;">
+
+    <div style="display: flex; align-items: center; gap: 8px; padding: 0 4px;">
+      <div style="font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 30px; font-weight: 600; margin-right: auto;">社区</div>
+      <button aria-label="搜索" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #211E3D; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      </button>
+      <a href="MatchDark.dc.html" style="height: 44px; padding: 0 16px 0 12px; border-radius: 22px; background: #B3A6FF; color: #1E1B3A; display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 0 #6F5FD6;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg>
+        找语伴
+      </a>
+    </div>
+
+    <div style="display: flex; gap: 20px; padding: 0 6px;">
+      <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="3">
+        <button onClick="{{ tb.pick }}" aria-pressed="{{ tb.on }}" style="height: 36px; border: 0; background: transparent; padding: 0; font-family: inherit; font-size: 16px; font-weight: 800; color: {{ tb.fg }}; box-shadow: inset 0 -4px 0 {{ tb.bar }};">{{ tb.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="background: #211E3D; border-radius: 22px; padding: 10px; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 6px; padding: 0 4px; font-size: 12px; font-weight: 800; color: #ABA7CC;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 4-3 7-7 8"/><path d="M13 21l4-9 4 9M14.5 18h5"/></svg>
+        翻译显示 · 外语帖译成中文，中文帖附英文
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px;">
+        <sc-for list="{{ modes }}" as="m" hint-placeholder-count="4">
+          <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="height: 40px; border-radius: 14px; border: 0; font-family: inherit; font-size: 13px; font-weight: 800; background: {{ m.bg }}; color: {{ m.fg }};">{{ m.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+      <article style="background: #211E3D; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 44px; height: 44px; border-radius: 22px; background: {{ p.color }}; color: #1E1B3A; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 18px; font-weight: 600; flex: 0 0 auto;">{{ p.initial }}</div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+            <div style="font-size: 15px; font-weight: 800;">{{ p.name }}</div>
+            <div style="font-size: 12px; font-weight: 600; color: #ABA7CC; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ p.handle }}</div>
+          </div>
+          <div style="height: 26px; padding: 0 10px; border-radius: 13px; background: #2C2850; display: flex; align-items: center; font-size: 12px; font-weight: 800; color: #C9C5F0;">{{ p.tag }}</div>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ p.blocks }}" as="b" hint-placeholder-count="2"><div style="{{ b.css }}"><sc-for list="{{ b.toks }}" as="tk" hint-placeholder-count="3"><sc-if value="{{ tk.isWord }}" hint-placeholder-val="{{ false }}"><button onClick="{{ tk.pick }}" style="{{ tk.css }}">{{ tk.t }}</button></sc-if><span>{{ tk.p }}</span></sc-for></div></sc-for>
+        </div>
+        <sc-if value="{{ p.replaced }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">AI 译自 {{ p.from }} · 切到「逐句对照」可看原文</div>
+        </sc-if>
+        <div style="display: flex; justify-content: space-between; align-items: center; color: #ABA7CC; margin: 0 -6px;">
+          <button aria-label="回复" style="height: 36px; padding: 0 8px; border: 0; background: transparent; color: inherit; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>{{ p.reply }}
+          </button>
+          <button aria-label="转发" style="height: 36px; padding: 0 8px; border: 0; background: transparent; color: inherit; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>{{ p.rt }}
+          </button>
+          <button aria-label="喜欢" style="height: 36px; padding: 0 8px; border: 0; background: transparent; color: inherit; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-9-8.6C1.6 8.3 3.6 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.4 3.3 4 6.4-2 4.2-9 8.6-9 8.6z"/></svg>{{ p.like }}
+          </button>
+          <button aria-label="朗读原文" style="height: 36px; padding: 0 8px; border: 0; background: transparent; color: inherit; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>朗读
+          </button>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ hasWord }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="查词" style="position: absolute; left: 12px; right: 12px; bottom: 24px; z-index: 5; background: #211E3D; border: 1.5px solid #38345E; color: #F4F2FF; border-radius: 30px; padding: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -8px 40px rgba(0,0,0,0.6);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-family: 'Fredoka', sans-serif; font-size: 32px; font-weight: 600; color: #FFE27A;">{{ w.w }}</div>
+        <button aria-label="发音" style="width: 40px; height: 40px; border-radius: 20px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <button onClick="{{ closeWord }}" aria-label="关闭" style="margin-left: auto; width: 40px; height: 40px; border-radius: 20px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div style="font-size: 15px; color: #ABA7CC; font-weight: 600;">{{ w.ph }}</div>
+      <div style="font-size: 18px; font-weight: 800;"><span style="color: #ABA7CC; font-weight: 600;">{{ w.pos }}</span> {{ w.zh }}</div>
+      <div style="background: #2C2850; border-radius: 16px; padding: 10px 12px; font-size: 14px; font-weight: 600; color: #C9C5F0; line-height: 1.5;">在这条帖子里：{{ w.ctx }}</div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <button style="height: 48px; border-radius: 24px; border: 0; background: #FFE27A; color: #1E1B3A; font-family: inherit; font-size: 15px; font-weight: 800; box-shadow: 0 4px 0 #B89A3A;">{{ w.saveLabel }}</button>
+        <a href="ChatDark.dc.html" style="height: 48px; border-radius: 24px; background: #F4F2FF; color: #14122B; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800;">问问 AI 伙伴</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <a href="ComposeDark.dc.html" aria-label="发帖" style="position: absolute; right: 20px; bottom: 124px; width: 60px; height: 60px; border-radius: 30px; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 0 #B89A3A, 0 10px 24px rgba(0,0,0,0.4); z-index: 2;">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+  </a>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: linear-gradient(to bottom, rgba(20,18,43,0), #14122B 70%); pointer-events: none;" aria-hidden="true"></div>
+  <nav aria-label="主导航" style="position: absolute; left: 20px; right: 20px; bottom: 30px; height: 72px; border-radius: 36px; background: #1E1B38; display: flex; align-items: center; justify-content: space-between; padding: 8px; box-sizing: border-box; box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 18px 36px rgba(0,0,0,0.5);">
+    <a href="MainDark.dc.html" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+      聊天
+    </a>
+    <a href="ScenesDark.dc.html" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg>
+      练习
+    </a>
+    <a href="CommunityDark.dc.html" aria-current="page" style="height: 56px; padding: 0 20px 0 16px; border-radius: 28px; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 0 #B89A3A;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      社区
+    </a>
+    <a href="SpellDark.dc.html" aria-label="词本，6 个待复习" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC; position: relative;">
+      <span style="position: absolute; top: 6px; right: 12px; width: 10px; height: 10px; border-radius: 5px; background: #FF8C69; box-shadow: 0 0 0 2.5px #1E1B38;" aria-hidden="true"></span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="14" rx="3"/><path d="M8 3h10a3 3 0 0 1 3 3v10"/></svg>
+      词本
+    </a>
+    <a href="ReadingDark.dc.html" style="width: 56px; height: 56px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 700; color: #ABA7CC;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v17H5.5A2.5 2.5 0 0 1 3 17.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H13v17h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg>
+      阅读
+    </a>
+  </nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'replace', tab: 0, word: null, ctx: '' };
+  }
+  renderVals() {
+    const s = this.state;
+    const POSTS = [
+      { name: 'Emma Lee', handle: '@emma.reads · 西雅图 · 2 小时', initial: 'E', color: '#FFD6C8', from: 'English', tag: 'EN → 中', sep: ' ', tsep: '',
+        orig: ['Finally tried hot pot with friends tonight.', 'My tongue is still numb from the Sichuan pepper!', 'Any tips for a beginner?'],
+        tr: ['今晚终于和朋友去吃了火锅。', '花椒让我的舌头到现在还是麻的！', '新手有什么建议吗？'], stats: ['24', '6', '132'] },
+      { name: '小林', handle: '@xiaolin · 纽约 · 3 小时', initial: '林', color: '#C8F1E0', from: '中文', tag: '中 → EN', sep: '', tsep: ' ',
+        orig: ['今天第一次用英文点咖啡，店员一下就听懂了！', '下次想试试问路。'],
+        tr: ['Ordered coffee in English for the first time today, and the barista got it right away!', 'Next time I want to try asking for directions.'], stats: ['18', '2', '96'] },
+      { name: 'Kenji', handle: '@kenji_t · 大阪 · 5 小时', initial: 'K', color: '#DDD7FF', from: '日本語', tag: '日 → 中', sep: '', tsep: '',
+        orig: ['来月、初めてニューヨークに行きます。', '地元の人が行くおすすめのお店はありますか？'],
+        tr: ['下个月我第一次去纽约。', '有没有本地人常去的推荐小店？'], stats: ['31', '4', '88'] }
+    ];
+    const MAIN = 'font-size: 16px; line-height: 1.5; font-weight: 700; color: #F4F2FF;';
+    const SUB = 'font-size: 14px; line-height: 1.5; font-weight: 600; color: #ABA7CC; margin-bottom: 8px;';
+    const BOX = 'font-size: 15px; line-height: 1.55; font-weight: 600; color: #C9C5F0; background: #2C2850; border-radius: 16px; padding: 10px 12px; margin-top: 8px;';
+    const DICT = {
+      finally: ['/ˈfaɪnəli/', 'adv.', '终于'], tried: ['/traɪd/', 'v.', '尝试（try 的过去式）'], hot: ['/hɒt/', 'adj.', '热的；辣的 · hot pot 火锅'],
+      pot: ['/pɒt/', 'n.', '锅 · hot pot 火锅'], with: ['/wɪð/', 'prep.', '和……一起'], friends: ['/frendz/', 'n.', '朋友们'],
+      tonight: ['/təˈnaɪt/', 'adv.', '今晚'], my: ['/maɪ/', 'pron.', '我的'], tongue: ['/tʌŋ/', 'n.', '舌头'], is: ['/ɪz/', 'v.', '是'],
+      still: ['/stɪl/', 'adv.', '仍然；还'], numb: ['/nʌm/', 'adj.', '麻木的；发麻的'], from: ['/frɒm/', 'prep.', '由于；来自'],
+      the: ['/ðə/', 'art.', '这；那'], sichuan: ['/ˌsɪtʃˈwɑːn/', 'n.', '四川 · Sichuan pepper 花椒'], pepper: ['/ˈpepə/', 'n.', '胡椒 · Sichuan pepper 花椒'],
+      any: ['/ˈeni/', 'det.', '任何；一些'], tips: ['/tɪps/', 'n.', '小建议；窍门'], for: ['/fɔː/', 'prep.', '给；为了'], a: ['/ə/', 'art.', '一（个）'],
+      beginner: ['/bɪˈɡɪnə/', 'n.', '新手；初学者'], ordered: ['/ˈɔːdəd/', 'v.', '点（餐）；订购'], coffee: ['/ˈkɒfi/', 'n.', '咖啡'],
+      in: ['/ɪn/', 'prep.', '用（某种语言）'], english: ['/ˈɪŋɡlɪʃ/', 'n.', '英语'], first: ['/fɜːst/', 'adj.', '第一次的'], time: ['/taɪm/', 'n.', '次；时间'],
+      today: ['/təˈdeɪ/', 'adv.', '今天'], and: ['/ænd/', 'conj.', '而且；和'], barista: ['/bəˈriːstə/', 'n.', '咖啡师'], got: ['/ɡɒt/', 'v.', '听懂（get 的过去式）'],
+      it: ['/ɪt/', 'pron.', '它'], right: ['/raɪt/', 'adv.', 'right away 马上'], away: ['/əˈweɪ/', 'adv.', 'right away 马上'], next: ['/nekst/', 'adj.', '下一个的'],
+      i: ['/aɪ/', 'pron.', '我'], want: ['/wɒnt/', 'v.', '想要'], to: ['/tuː/', 'prep.', '（动词不定式标记）'], try: ['/traɪ/', 'v.', '尝试'],
+      asking: ['/ˈɑːskɪŋ/', 'v.', '询问（ask）'], directions: ['/dəˈrekʃənz/', 'n.', '路线；方向']
+    };
+    const SAVED = { barista: 1 };
+    const BTN = 'border: 0; font: inherit; color: inherit; background: transparent; padding: 0 2px; margin: 0 -2px; border-radius: 6px; cursor: pointer;';
+    const SEL = 'border: 0; font: inherit; color: #1E1B3A; background: #FFE27A; padding: 0 2px; margin: 0 -2px; border-radius: 6px; cursor: pointer;';
+    const latin = (t) => /[A-Za-z]/.test(t) && !/[぀-ヿ一-鿿]/.test(t);
+    const tok = (text) => {
+      if (!latin(text)) return [{ isWord: false, t: '', p: text, css: '', pick: null }];
+      return text.split(' ').map((raw) => {
+        const m = raw.match(/^([A-Za-z']+)(.*)$/);
+        const key = m ? m[1].toLowerCase() : '';
+        if (!m || !DICT[key]) return { isWord: false, t: '', p: raw + ' ', css: '', pick: null };
+        return { isWord: true, t: m[1], p: m[2] + ' ', css: s.word === key ? SEL : BTN, pick: () => this.setState({ word: key, ctx: text }) };
+      });
+    };
+    const posts = POSTS.map((p) => {
+      let blocks;
+      if (s.mode === 'lines') {
+        blocks = [];
+        p.orig.forEach((o, i) => { blocks.push({ t: o, css: MAIN }); blocks.push({ t: p.tr[i], css: SUB }); });
+      } else if (s.mode === 'para') {
+        blocks = [{ t: p.orig.join(p.sep), css: MAIN }, { t: p.tr.join(p.tsep), css: BOX }];
+      } else if (s.mode === 'replace') {
+        blocks = [{ t: p.tr.join(p.tsep), css: MAIN }];
+      } else {
+        blocks = [{ t: p.orig.join(p.sep), css: MAIN }];
+      }
+      blocks = blocks.map((b) => ({ css: b.css, toks: tok(b.t) }));
+      return Object.assign({}, p, { blocks: blocks, replaced: s.mode === 'replace', reply: p.stats[0], rt: p.stats[1], like: p.stats[2] });
+    });
+    const MODES = [['lines', '逐句对照'], ['para', '整段翻译'], ['replace', '只看译文'], ['orig', '只看原文']];
+    const TABS = ['推荐', '关注', '同城'];
+    const e = s.word ? DICT[s.word] : null;
+    return {
+      hasWord: !!e,
+      closeWord: () => this.setState({ word: null }),
+      w: e ? { w: s.word, ph: e[0], pos: e[1], zh: e[2], ctx: s.ctx, saveLabel: SAVED[s.word] ? '已在词本' : '加入词本' } : { w: '', ph: '', pos: '', zh: '', ctx: '', saveLabel: '' },
+      posts: posts,
+      modes: MODES.map((m) => ({
+        label: m[1], on: s.mode === m[0],
+        bg: s.mode === m[0] ? '#F4F2FF' : '#2C2850',
+        fg: s.mode === m[0] ? '#14122B' : '#F4F2FF',
+        pick: () => this.setState({ mode: m[0] })
+      })),
+      tabs: TABS.map((t, i) => ({
+        label: t, on: s.tab === i,
+        fg: s.tab === i ? '#F4F2FF' : '#ABA7CC',
+        bar: s.tab === i ? '#FFC845' : 'transparent',
+        pick: () => this.setState({ tab: i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

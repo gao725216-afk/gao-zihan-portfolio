@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>聊天 · 渐进混合</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1B3A;text-decoration:none}a:hover{color:#5B48F2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2F8; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #1E1B3A; display: flex; flex-direction: column; padding: 54px 0 26px;">
+
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0 12px; height: 52px;">
+    <a href="Main.dc.html" aria-label="返回" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </a>
+    <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3c7 0 10 4 14 7s7 7 7 14-3 11-7 14-7 7-14 7-10-4-14-7-7-7-7-14 3-11 7-14 7-7 14-7z" fill="#FF8C69"/><path d="M14.5 21.5q3-3 6 0" stroke="#1E1B3A" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="31" cy="21" r="2.6" fill="#1E1B3A"/><path d="M18 28q6 7 12 0z" fill="#1E1B3A"/></svg>
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 19px; font-weight: 600; line-height: 1.1;">Kai</div>
+      <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">旅行搭子 · 在线</div>
+    </div>
+    <a href="Voice.dc.html" aria-label="语音聊天" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>
+    </a>
+  </div>
+
+  <div style="margin: 6px 16px 0; height: 44px; border-radius: 22px; background: #E4E2EF; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; box-sizing: border-box;">
+    <a href="Chat.dc.html" style="border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #4A4766;">英文 + 翻译</a>
+    <a href="ChatMix.dc.html" aria-current="page" style="border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; box-shadow: 0 2px 0 rgba(30,27,58,0.08);">渐进混合</a>
+  </div>
+
+  <div style="margin: 12px 16px 0; background: #FF8C69; border-radius: 24px; padding: 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 5px 0 #E2643F;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <div style="font-size: 15px; font-weight: 800;">回复里的英文比例</div>
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600;">{{ pct }}</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;">
+      <sc-for list="{{ levels }}" as="lv" hint-placeholder-count="4">
+        <button onClick="{{ lv.pick }}" aria-pressed="{{ lv.on }}" style="height: 44px; border-radius: 16px; border: 0; font-family: 'Fredoka', sans-serif; font-size: 16px; font-weight: 600; background: {{ lv.bg }}; color: {{ lv.fg }};">{{ lv.label }}</button>
+      </sc-for>
+    </div>
+    <div style="font-size: 12px; font-weight: 700; color: #4A1A08;">{{ hint }}</div>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; padding: 12px 16px;">
+
+    <div style="align-self: flex-end; max-width: 280px; background: #5B48F2; color: #FFFFFF; border-radius: 22px 22px 6px 22px; padding: 12px 16px; font-size: 16px; line-height: 1.45; font-weight: 600;">周末想出门，但又有点懒。</div>
+
+    <div style="align-self: flex-start; max-width: 310px; background: #FFFFFF; border-radius: 22px 22px 22px 6px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 17px; line-height: 1.6; font-weight: 700;"><sc-for list="{{ m1 }}" as="seg" hint-placeholder-count="5"><span style="{{ seg.css }}">{{ seg.t }}</span></sc-for></div>
+      <sc-if value="{{ gloss }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 13px; color: #5E5B78; font-weight: 600;">{{ g1 }}</div>
+      </sc-if>
+    </div>
+
+    <div style="align-self: flex-start; max-width: 310px; background: #FFFFFF; border-radius: 22px 22px 22px 6px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 17px; line-height: 1.6; font-weight: 700;"><sc-for list="{{ m2 }}" as="seg" hint-placeholder-count="3"><span style="{{ seg.css }}">{{ seg.t }}</span></sc-for></div>
+      <sc-if value="{{ gloss }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 13px; color: #5E5B78; font-weight: 600;">{{ g2 }}</div>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button onClick="{{ toggleGloss }}" aria-pressed="{{ gloss }}" style="height: 44px; padding: 0 14px; border-radius: 22px; border: 1.5px solid #D7D4E6; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 800; color: #1E1B3A;">{{ glossLabel }}</button>
+      <button onClick="{{ more }}" style="height: 44px; padding: 0 14px; border-radius: 22px; border: 1.5px solid #D7D4E6; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 800; color: #1E1B3A; display: flex; align-items: center; gap: 6px;">
+        试试更多英文
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div style="margin: 0 12px; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border-radius: 28px; padding: 6px 6px 6px 18px; box-shadow: 0 4px 16px rgba(30,27,58,0.07);">
+    <label for="mix-input" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">输入消息</label>
+    <input id="mix-input" placeholder="你有什么建议？" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; color: #1E1B3A; height: 44px;">
+    <button aria-label="按住说话" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #F3F2F8; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+    </button>
+    <button aria-label="发送" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    </button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { level: 1, gloss: true };
+  }
+  renderVals() {
+    const s = this.state;
+    const EN = 'background: #FFE27A; border-radius: 6px; padding: 0 3px;';
+    const ZH = '';
+    const seg = (arr) => arr.map((p) => ({ t: p[0], css: p[1] ? EN : ZH }));
+    const M1 = [
+      seg([['那就来一次轻松的 ', 0], ['walk', 1], [' 吧，带上一杯咖啡，给自己一点独处时间。', 0]]),
+      seg([['那就来一次轻松的 ', 0], ['walk', 1], [' 吧，带上 ', 0], ['coffee', 1], ['，给自己一点 ', 0], ['me time', 1], ['。', 0]]),
+      seg([['Maybe', 1], [' 来一次轻松的 ', 0], ['walk', 1], ['，', 0], ['grab a coffee', 1], ['，给自己一点 ', 0], ['me time', 1], ['。', 0]]),
+      seg([['Maybe take an easy walk, grab a coffee, and enjoy some me time.', 1]])
+    ];
+    const M2 = [
+      seg([['不用安排太多，享受这个下午就好。', 0]]),
+      seg([['不用安排太多，', 0], ['enjoy', 1], [' 这个下午就好。', 0]]),
+      seg([['No need to plan too much', 1], ['，', 0], ['enjoy', 1], [' 这个下午就好。', 0]]),
+      seg([['No need to plan too much. Just enjoy the afternoon.', 1]])
+    ];
+    const G1 = ['walk：散步', 'walk 散步 · coffee 咖啡 · me time 独处时间', 'grab a coffee：买杯咖啡 · me time：独处时间', '也许去轻松地散个步，买杯咖啡，享受一点独处时间。'];
+    const G2 = ['', 'enjoy：享受', 'No need to plan too much：不用安排太多', '不用安排太多，享受这个下午就好。'];
+    const HINTS = ['刚开始：每句只换一个词', '根据你的词本，建议从 20% 开始', '短语开始出现，整句意思依然好懂', '全英文回复，点任意词仍可查'];
+    const labels = ['10%', '20%', '50%', '100%'];
+    return {
+      pct: labels[s.level],
+      hint: HINTS[s.level],
+      levels: labels.map((l, i) => ({
+        label: l,
+        on: i === s.level,
+        bg: i === s.level ? '#1E1B3A' : 'rgba(255,255,255,0.55)',
+        fg: i === s.level ? '#FFFFFF' : '#1E1B3A',
+        pick: () => this.setState({ level: i })
+      })),
+      m1: M1[s.level],
+      m2: M2[s.level],
+      g1: G1[s.level],
+      g2: G2[s.level] || '整句是中文',
+      gloss: s.gloss,
+      glossLabel: s.gloss ? '隐藏中文释义' : '显示中文释义',
+      toggleGloss: () => this.setState({ gloss: !s.gloss }),
+      more: () => this.setState({ level: Math.min(3, s.level + 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

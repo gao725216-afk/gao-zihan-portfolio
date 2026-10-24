@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>跨语言私聊 · 深色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#14122B}
+a{color:#F4F2FF;text-decoration:none}a:hover{color:#FFE27A}
+input::placeholder{color:#8F8AB5}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #14122B; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #F4F2FF; display: flex; flex-direction: column; padding: 54px 0 26px;">
+
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0 12px; height: 52px;">
+    <a href="MatchDark.dc.html" aria-label="返回" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </a>
+    <div style="width: 40px; height: 40px; border-radius: 20px; background: #FFD6C8; color: #1E1B3A; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 600;">E</div>
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 19px; font-weight: 600; line-height: 1.1;">Emma Lee</div>
+      <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">西雅图 · 在线 · 母语 English</div>
+    </div>
+    <button onClick="{{ toggleMenu }}" aria-expanded="{{ menu }}" aria-label="更多" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #211E3D; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    </button>
+  </div>
+
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <div role="menu" aria-label="更多操作" style="position: absolute; top: 108px; right: 16px; z-index: 10; width: 248px; background: #211E3D; border: 1.5px solid #38345E; border-radius: 22px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,0.55); display: flex; flex-direction: column;">
+      <button role="menuitem" style="height: 48px; border: 0; background: transparent; border-radius: 14px; padding: 0 12px; text-align: left; font-family: inherit; font-size: 15px; font-weight: 700; color: #F4F2FF; display: flex; align-items: center; gap: 10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        查看 Emma 的资料
+      </button>
+      <button role="menuitem" style="height: 48px; border: 0; background: transparent; border-radius: 14px; padding: 0 12px; text-align: left; font-family: inherit; font-size: 15px; font-weight: 700; color: #F4F2FF; display: flex; align-items: center; gap: 10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-9.3-5M6 8c0 7-3 9-3 9h13M13.7 21a2 2 0 0 1-3.4 0M3 3l18 18"/></svg>
+        消息免打扰
+      </button>
+      <div style="height: 1.5px; background: #2C2850; margin: 4px 8px;"></div>
+      <button role="menuitem" style="height: 48px; border: 0; background: transparent; border-radius: 14px; padding: 0 12px; text-align: left; font-family: inherit; font-size: 15px; font-weight: 800; color: #FF8E9B; display: flex; align-items: center; gap: 10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+        屏蔽 Emma
+      </button>
+      <button role="menuitem" style="height: 48px; border: 0; background: transparent; border-radius: 14px; padding: 0 12px; text-align: left; font-family: inherit; font-size: 15px; font-weight: 800; color: #FF8E9B; display: flex; align-items: center; gap: 10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>
+        举报
+      </button>
+      <div style="font-size: 12px; font-weight: 600; color: #ABA7CC; padding: 4px 12px 8px; line-height: 1.5;">屏蔽后，对方不能再给你发消息，也看不到你的动态。</div>
+    </div>
+  </sc-if>
+
+  <div style="margin: 6px 16px 0; background: #211E3D; border-radius: 22px; padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #ABA7CC;">
+      你发
+      <span style="height: 26px; padding: 0 10px; border-radius: 13px; background: #5ED3A8; color: #1E1B3A; display: flex; align-items: center; font-weight: 800;">中文</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Emma 看到
+      <span style="height: 26px; padding: 0 10px; border-radius: 13px; background: #B3A6FF; color: #1E1B3A; display: flex; align-items: center; font-weight: 800;">English</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="font-size: 13px; font-weight: 700; color: #ABA7CC; white-space: nowrap;">她发来的</div>
+      <div style="flex: 1; height: 36px; border-radius: 18px; background: #14122B; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 3px; box-sizing: border-box;">
+        <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
+          <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="border: 0; border-radius: 15px; font-family: inherit; font-size: 12px; font-weight: 800; background: {{ m.bg }}; color: {{ m.fg }};">{{ m.label }}</button>
+        </sc-for>
+      </div>
+      <button style="height: 36px; padding: 0 10px; border-radius: 18px; border: 0; background: #2C2850; font-family: inherit; font-size: 12px; font-weight: 800; color: #F4F2FF; display: flex; align-items: center; gap: 2px;">
+        中文
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; padding: 12px 16px;">
+
+    <div style="align-self: flex-start; max-width: 300px; background: #211E3D; border-radius: 22px 22px 22px 6px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <sc-if value="{{ showOrig }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 16px; line-height: 1.5; font-weight: 700;">Hi! I saw you also love evening walks. Where do you usually go in New York?</div>
+      </sc-if>
+      <sc-if value="{{ both }}" hint-placeholder-val="{{ true }}">
+        <div style="border-top: 1.5px dashed #38345E; padding-top: 6px; font-size: 14px; line-height: 1.5; color: #ABA7CC; font-weight: 600;">嗨！看到你也喜欢傍晚散步。你在纽约一般去哪儿走？</div>
+      </sc-if>
+      <sc-if value="{{ trOnly }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size: 16px; line-height: 1.5; font-weight: 700;">嗨！看到你也喜欢傍晚散步。你在纽约一般去哪儿走？</div>
+        <div style="font-size: 11px; font-weight: 700; color: #ABA7CC;">AI 译自 English</div>
+      </sc-if>
+    </div>
+
+    <div style="align-self: flex-end; max-width: 290px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+      <div style="background: #6E5CFF; color: #FFFFFF; border-radius: 22px 22px 6px 22px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 16px; line-height: 1.5; font-weight: 600;">我常去河边的公园，日落的时候特别好看。你在西雅图呢？</div>
+        <sc-if value="{{ seen }}" hint-placeholder-val="{{ true }}">
+          <div style="border-top: 1.5px dashed rgba(255,255,255,0.45); padding-top: 6px; display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-size: 11px; font-weight: 800; color: #E6E2FF;">Emma 看到的是</div>
+            <div style="font-size: 14px; line-height: 1.45; color: #F1EFFF;">I often go to the park by the river. It's especially beautiful at sunset. What about you in Seattle?</div>
+          </div>
+        </sc-if>
+      </div>
+      <button onClick="{{ toggleSeen }}" style="height: 28px; border: 0; background: transparent; padding: 0 4px; font-family: inherit; font-size: 12px; font-weight: 800; color: #B3A6FF;">{{ seenLabel }}</button>
+    </div>
+
+    <div style="align-self: flex-start; max-width: 300px; background: #211E3D; border-radius: 22px 22px 22px 6px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <sc-if value="{{ showOrig }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 16px; line-height: 1.5; font-weight: 700;">Seattle has great <span style="background: #FFE27A; color: #1E1B3A; border-radius: 6px; padding: 0 3px;">waterfront</span> trails, but it rains a lot. Do you like rain?</div>
+      </sc-if>
+      <sc-if value="{{ both }}" hint-placeholder-val="{{ true }}">
+        <div style="border-top: 1.5px dashed #38345E; padding-top: 6px; font-size: 14px; line-height: 1.5; color: #ABA7CC; font-weight: 600;">西雅图有很棒的海滨步道，就是雨很多。你喜欢下雨吗？</div>
+      </sc-if>
+      <sc-if value="{{ trOnly }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size: 16px; line-height: 1.5; font-weight: 700;">西雅图有很棒的海滨步道，就是雨很多。你喜欢下雨吗？</div>
+        <div style="font-size: 11px; font-weight: 700; color: #ABA7CC;">AI 译自 English</div>
+      </sc-if>
+    </div>
+    <div style="align-self: flex-start; max-width: 300px; background: #211E3D; border-radius: 22px 22px 22px 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button aria-label="播放语音" style="width: 36px; height: 36px; border-radius: 18px; border: 0; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+        <div style="display: flex; align-items: center; gap: 3px; height: 26px; flex: 1;" aria-hidden="true">
+          <span style="width: 3px; height: 8px; border-radius: 2px; background: #F4F2FF;"></span><span style="width: 3px; height: 14px; border-radius: 2px; background: #F4F2FF;"></span><span style="width: 3px; height: 20px; border-radius: 2px; background: #F4F2FF;"></span><span style="width: 3px; height: 12px; border-radius: 2px; background: #F4F2FF;"></span><span style="width: 3px; height: 24px; border-radius: 2px; background: #F4F2FF;"></span><span style="width: 3px; height: 16px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 10px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 18px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 22px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 12px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 8px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 16px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 20px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 10px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 14px; border-radius: 2px; background: #4A4578;"></span><span style="width: 3px; height: 8px; border-radius: 2px; background: #4A4578;"></span>
+        </div>
+        <span style="font-size: 12px; font-weight: 800; color: #ABA7CC;">0:08</span>
+      </div>
+      <sc-if value="{{ showOrig }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size: 15px; line-height: 1.5; font-weight: 700;">I'm going to the farmers market this weekend. Want to come?</div>
+      </sc-if>
+      <sc-if value="{{ both }}" hint-placeholder-val="{{ false }}">
+        <div style="border-top: 1.5px dashed #38345E; padding-top: 6px; font-size: 14px; line-height: 1.5; color: #ABA7CC; font-weight: 600;">这周末我要去农贸市场，要一起来吗？</div>
+      </sc-if>
+      <sc-if value="{{ trOnly }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 15px; line-height: 1.5; font-weight: 700;">这周末我要去农贸市场，要一起来吗？</div>
+      </sc-if>
+      <div style="font-size: 11px; font-weight: 700; color: #ABA7CC;">语音 · AI 已转成文字并翻译</div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 8px; padding: 0 16px 8px;">
+    <button onClick="{{ toggleEn }}" aria-pressed="{{ en }}" style="height: 44px; padding: 0 10px 0 14px; border-radius: 22px; border: 1.5px solid #38345E; background: #211E3D; font-family: inherit; font-size: 13px; font-weight: 800; color: #F4F2FF; display: flex; align-items: center; gap: 8px;">
+      我想试着用英文写（帮我纠错）
+      <span style="width: 34px; height: 22px; border-radius: 11px; background: {{ enTrack }}; display: flex; align-items: center; padding: 2px; box-sizing: border-box; justify-content: {{ enAlign }};"><span style="width: 18px; height: 18px; border-radius: 9px; background: #FFFFFF;"></span></span>
+    </button>
+  </div>
+
+  <div style="margin: 0 12px; display: flex; align-items: center; gap: 8px; background: #211E3D; border: 1.5px solid #38345E; border-radius: 28px; padding: 6px 6px 6px 18px;">
+    <label for="peer-input-d" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">输入消息</label>
+    <input id="peer-input-d" placeholder="{{ placeholder }}" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; color: #F4F2FF; height: 44px;">
+    <button aria-label="按住说话" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+    </button>
+    <button aria-label="发送" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #F4F2FF; color: #14122B; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    </button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'tr', seen: true, en: false, menu: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const M = [['both', '双语'], ['tr', '只看译文'], ['orig', '只看原文']];
+    return {
+      menu: s.menu,
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      modes: M.map((m) => ({
+        label: m[1], on: s.mode === m[0],
+        bg: s.mode === m[0] ? '#F4F2FF' : 'transparent',
+        fg: s.mode === m[0] ? '#14122B' : '#ABA7CC',
+        pick: () => this.setState({ mode: m[0] })
+      })),
+      showOrig: s.mode !== 'tr',
+      both: s.mode === 'both',
+      trOnly: s.mode === 'tr',
+      seen: s.seen,
+      seenLabel: s.seen ? '收起 Emma 看到的英文' : '看看 Emma 看到的英文',
+      toggleSeen: () => this.setState({ seen: !s.seen }),
+      en: s.en,
+      enTrack: s.en ? '#2FA36B' : '#4A4578',
+      enAlign: s.en ? 'flex-end' : 'flex-start',
+      toggleEn: () => this.setState({ en: !s.en }),
+      placeholder: s.en ? 'Try it in English…' : '用中文说就行，Emma 会看到英文'
+    };
+  }
+}
+</script>
+</body>
+</html>

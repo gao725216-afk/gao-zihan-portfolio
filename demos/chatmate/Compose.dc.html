@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>社区 · 发帖</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1B3A;text-decoration:none}a:hover{color:#5B48F2}
+textarea::placeholder{color:#8A87A3}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2F8; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 14px; padding: 54px 16px 34px;">
+
+  <div style="display: flex; align-items: center; gap: 10px; height: 52px;">
+    <a href="Community.dc.html" aria-label="取消" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </a>
+    <div style="flex: 1; text-align: center; font-size: 17px; font-weight: 800;">发帖</div>
+    <a href="Community.dc.html" style="height: 44px; padding: 0 20px; border-radius: 22px; background: #FFE27A; display: flex; align-items: center; font-size: 15px; font-weight: 800; box-shadow: 0 4px 0 #D9B83F;">发布</a>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 40px; height: 40px; border-radius: 20px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800;">我</div>
+      <div style="display: flex; flex-direction: column;">
+        <div style="font-size: 15px; font-weight: 800;">用你最顺手的语言写</div>
+        <div style="font-size: 12px; font-weight: 600; color: #5E5B78;">读的人会按自己的语言看到 AI 翻译</div>
+      </div>
+    </div>
+    <label for="post-text" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">帖子内容</label>
+    <textarea id="post-text" rows="4" style="border: 0; outline: none; resize: none; background: transparent; font-family: inherit; font-size: 17px; line-height: 1.6; font-weight: 600; color: #1E1B3A; padding: 0;">第一次在美国过万圣节，邻居家门口的南瓜灯比我想象的还要夸张！大家今年都扮成什么？</textarea>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <span style="height: 32px; padding: 0 12px; border-radius: 16px; background: #F3F2F8; display: flex; align-items: center; font-size: 13px; font-weight: 800; color: #4A4766;">#第一次在美国</span>
+      <span style="height: 32px; padding: 0 12px; border-radius: 16px; background: #F3F2F8; display: flex; align-items: center; font-size: 13px; font-weight: 800; color: #4A4766;">#万圣节</span>
+    </div>
+  </div>
+
+  <div style="background: #B3A6FF; border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 5px 0 #8C7BF2;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="font-size: 15px; font-weight: 800;">别人看到的样子</div>
+      <div style="font-size: 12px; font-weight: 800; color: #2A1E7A;">AI 翻译预览</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;">
+      <sc-for list="{{ langs }}" as="lg" hint-placeholder-count="3">
+        <button onClick="{{ lg.pick }}" aria-pressed="{{ lg.on }}" style="height: 40px; border-radius: 14px; border: 0; font-family: inherit; font-size: 14px; font-weight: 800; background: {{ lg.bg }}; color: {{ lg.fg }};">{{ lg.label }}</button>
+      </sc-for>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 28px; height: 28px; border-radius: 14px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">我</div>
+        <div style="font-size: 13px; font-weight: 800;">你</div>
+        <div style="margin-left: auto; height: 22px; padding: 0 8px; border-radius: 11px; background: #F3F2F8; display: flex; align-items: center; font-size: 11px; font-weight: 800; color: #4A4766;">{{ tag }}</div>
+      </div>
+      <div style="font-size: 16px; line-height: 1.55; font-weight: 700;">{{ preview }}</div>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border-radius: 22px; padding: 4px 16px; display: flex; flex-direction: column;">
+    <button onClick="{{ toggleBi }}" aria-pressed="{{ bi }}" style="height: 56px; border: 0; background: transparent; padding: 0; font-family: inherit; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; color: #1E1B3A;">
+      <span style="display: flex; flex-direction: column;">
+        <span style="font-size: 15px; font-weight: 800;">我的主页上也附英文版</span>
+        <span style="font-size: 12px; font-weight: 600; color: #5E5B78;">顺便学：自己写的话用英文怎么说</span>
+      </span>
+      <span style="width: 44px; height: 28px; border-radius: 14px; background: {{ biTrack }}; display: flex; align-items: center; padding: 3px; box-sizing: border-box; justify-content: {{ biAlign }}; flex: 0 0 auto;"><span style="width: 22px; height: 22px; border-radius: 11px; background: #FFFFFF;"></span></span>
+    </button>
+    <div style="height: 1.5px; background: #F3F2F8;"></div>
+    <div style="height: 56px; display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-size: 15px; font-weight: 800;">谁可以看</span>
+      <span style="font-size: 14px; font-weight: 700; color: #5E5B78;">所有人</span>
+    </div>
+  </div>
+
+  <div style="flex: 1;"></div>
+  <div style="display: flex; gap: 10px;">
+    <button aria-label="添加图片" style="width: 48px; height: 48px; border-radius: 24px; border: 0; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="4"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>
+    </button>
+    <button aria-label="语音输入" style="width: 48px; height: 48px; border-radius: 24px; border: 0; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+    </button>
+    <button style="flex: 1; height: 48px; border-radius: 24px; border: 0; background: #FFFFFF; color: #1E1B3A; font-family: inherit; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>
+      想用英文写？我帮你改
+    </button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: 0, bi: true };
+  }
+  renderVals() {
+    const s = this.state;
+    const L = [
+      ['English', '中 → EN', "My first Halloween in the US, and the jack-o'-lanterns on my neighbors' porches are way more over the top than I imagined! What is everyone dressing up as this year?"],
+      ['日本語', '中 → 日', 'アメリカで初めてのハロウィン。近所の家の前のジャック・オ・ランタンが想像以上に派手でびっくり！みんなは今年、何の仮装をするの？'],
+      ['Español', '中 → ES', '¡Mi primer Halloween en Estados Unidos! Las calabazas en las puertas de mis vecinos son mucho más exageradas de lo que imaginaba. ¿De qué se van a disfrazar este año?']
+    ];
+    return {
+      langs: L.map((l, i) => ({
+        label: l[0], on: s.lang === i,
+        bg: s.lang === i ? '#1E1B3A' : 'rgba(255,255,255,0.6)',
+        fg: s.lang === i ? '#FFFFFF' : '#1E1B3A',
+        pick: () => this.setState({ lang: i })
+      })),
+      tag: L[s.lang][1],
+      preview: L[s.lang][2],
+      bi: s.bi,
+      biTrack: s.bi ? '#5B48F2' : '#C9C6DA',
+      biAlign: s.bi ? 'flex-end' : 'flex-start',
+      toggleBi: () => this.setState({ bi: !s.bi })
+    };
+  }
+}
+</script>
+</body>
+</html>

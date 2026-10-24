@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>电脑端 · 社区动态</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1B3A;text-decoration:none}a:hover{color:#5B48F2}
+input::placeholder{color:#8A87A3}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F2F8; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #1E1B3A; display: flex; flex-wrap: wrap; gap: 16px; padding: 16px;">
+
+  <aside style="flex: 1 1 250px; background: #FFFFFF; border-radius: 28px; padding: 20px 14px; display: flex; flex-direction: column; gap: 18px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3c11.6 0 21 8.4 21 19s-9.4 19-21 19c-2.6 0-5-.4-7.3-1.2L7 44l2.4-8.6C5.4 31.9 3 27.2 3 22 3 11.4 12.4 3 24 3z" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M18 28c3 3 9 3 12 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600;">Chatmate</div>
+    </div>
+    <nav aria-label="主导航" style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="DesktopChat.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+        聊天
+      </a>
+      <a href="DesktopChat.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg>
+        情景练习
+      </a>
+      <a href="DesktopCommunity.dc.html" aria-current="page" style="height: 44px; border-radius: 22px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        社区
+      </a>
+      <a href="DesktopVocab.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="14" rx="3"/><path d="M8 3h10a3 3 0 0 1 3 3v10"/></svg>
+        词本
+        <span style="margin-left: auto; min-width: 24px; height: 24px; border-radius: 12px; background: #FFE27A; color: #1E1B3A; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 6px; box-sizing: border-box;">6</span>
+      </a>
+      <a href="DesktopReading.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v17H5.5A2.5 2.5 0 0 1 3 17.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H13v17h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg>
+        阅读
+      </a>
+      <a href="Summary.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c1 3.2 5.5 5.3 5.5 10.6a5.5 5.5 0 0 1-11 0c0-2.3 1-3.9 2.2-5 0 2.2 1 3.3 2.2 3.3 0-3.2-1.2-5.4 1.1-8.9z"/></svg>
+        每日小结
+      </a>
+    </nav>
+    <div style="flex: 1;"></div>
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 20px; background: #F3F2F8;">
+      <div style="width: 40px; height: 40px; border-radius: 20px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800;">我</div>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="font-size: 14px; font-weight: 800;">我说中文 · 练 English</div>
+        <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">连续 12 天</div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; min-height: calc(100vh - 32px); display: flex; flex-direction: column; gap: 14px;">
+    <div style="width: 100%; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px;">
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 6px 4px 0;">
+        <div style="font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 30px; font-weight: 600;">社区</div>
+        <div style="display: flex; gap: 18px; margin-left: 12px; margin-right: auto;">
+          <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="3">
+            <button onClick="{{ tb.pick }}" aria-pressed="{{ tb.on }}" style="height: 36px; border: 0; background: transparent; padding: 0; font-family: inherit; font-size: 16px; font-weight: 800; color: {{ tb.fg }}; box-shadow: inset 0 -4px 0 {{ tb.bar }};">{{ tb.label }}</button>
+          </sc-for>
+        </div>
+        <div style="height: 44px; border-radius: 22px; background: #FFFFFF; display: flex; padding: 4px; box-sizing: border-box; gap: 2px;">
+          <sc-for list="{{ modes }}" as="m" hint-placeholder-count="4">
+            <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="border: 0; border-radius: 18px; padding: 0 12px; font-family: inherit; font-size: 13px; font-weight: 800; background: {{ m.bg }}; color: {{ m.fg }};">{{ m.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background: #FFFFFF; border-radius: 26px; padding: 14px 14px 14px 18px; display: flex; align-items: center; gap: 12px;">
+        <div style="width: 40px; height: 40px; border-radius: 20px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800; flex: 0 0 auto;">我</div>
+        <label for="d-post" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">发帖内容</label>
+        <input id="d-post" placeholder="用你最顺手的语言写，大家会看到自己语言的翻译" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; color: #1E1B3A; height: 44px;">
+        <button style="height: 44px; padding: 0 20px; border-radius: 22px; border: 0; background: #FFE27A; font-family: inherit; font-size: 15px; font-weight: 800; color: #1E1B3A; box-shadow: 0 4px 0 #D9B83F;">发帖</button>
+      </div>
+
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+        <article style="background: #FFFFFF; border-radius: 26px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 44px; height: 44px; border-radius: 22px; background: {{ p.color }}; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 18px; font-weight: 600; flex: 0 0 auto;">{{ p.initial }}</div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+              <div style="font-size: 15px; font-weight: 800;">{{ p.name }}</div>
+              <div style="font-size: 12px; font-weight: 600; color: #5E5B78;">{{ p.handle }}</div>
+            </div>
+            <div style="height: 26px; padding: 0 10px; border-radius: 13px; background: #F3F2F8; display: flex; align-items: center; font-size: 12px; font-weight: 800; color: #4A4766;">{{ p.tag }}</div>
+            <a href="DesktopPeerChat.dc.html" style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1.5px solid #D7D4E6; display: flex; align-items: center; font-size: 13px; font-weight: 800;">私聊</a>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ p.blocks }}" as="b" hint-placeholder-count="2"><div style="{{ b.css }}"><sc-for list="{{ b.toks }}" as="tk" hint-placeholder-count="3"><sc-if value="{{ tk.isWord }}" hint-placeholder-val="{{ false }}"><button onClick="{{ tk.pick }}" style="{{ tk.css }}">{{ tk.t }}</button></sc-if><span>{{ tk.p }}</span></sc-for></div></sc-for>
+          </div>
+          <sc-if value="{{ p.replaced }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">AI 译自 {{ p.from }} · 切到「逐句对照」可看原文</div>
+          </sc-if>
+          <div style="display: flex; gap: 22px; align-items: center; color: #5E5B78; font-size: 13px; font-weight: 700;">
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>{{ p.reply }}</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>{{ p.rt }}</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-9-8.6C1.6 8.3 3.6 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.4 3.3 4 6.4-2 4.2-9 8.6-9 8.6z"/></svg>{{ p.like }}</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>朗读原文</span>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </main>
+
+  <aside style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box;">
+    <sc-if value="{{ hasWord }}" hint-placeholder-val="{{ true }}">
+      <div style="background: #1E1B3A; color: #FFFFFF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="font-size: 12px; font-weight: 800; color: #C9C5F0;">查词</div>
+          <button onClick="{{ closeWord }}" aria-label="关闭查词" style="width: 32px; height: 32px; border-radius: 16px; border: 0; background: rgba(255,255,255,0.12); color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="font-family: 'Fredoka', sans-serif; font-size: 32px; font-weight: 600; color: #FFE27A;">{{ w.w }}</div>
+          <button aria-label="发音" style="width: 40px; height: 40px; border-radius: 20px; border: 0; background: rgba(255,255,255,0.14); color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+          </button>
+        </div>
+        <div style="font-size: 14px; color: #C9C5F0;">{{ w.ph }}</div>
+        <div style="font-size: 17px; font-weight: 700;"><span style="color: #C9C5F0; font-weight: 600;">{{ w.pos }}</span> {{ w.zh }}</div>
+        <div style="background: rgba(255,255,255,0.08); border-radius: 16px; padding: 10px 12px; font-size: 13px; line-height: 1.5;">{{ w.ctx }}</div>
+        <div style="display: flex; gap: 8px;">
+          <button style="flex: 1; height: 44px; border-radius: 22px; border: 0; background: #FFE27A; color: #1E1B3A; font-family: inherit; font-size: 14px; font-weight: 800; box-shadow: 0 4px 0 #C9A63A;">{{ w.saveLabel }}</button>
+          <a href="DesktopChat.dc.html" style="flex: 1; height: 44px; border-radius: 22px; border: 1.5px solid rgba(255,255,255,0.3); box-sizing: border-box; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800;">问问 AI 伙伴</a>
+        </div>
+      </div>
+    </sc-if>
+    <div style="background: #B3A6FF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 6px 0 #8C7BF2;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 15px; font-weight: 800;">今天的语伴推荐</div>
+        <a href="Match.dc.html" style="font-size: 13px; font-weight: 800; color: #2A1E7A;">看更多</a>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 48px; height: 48px; border-radius: 24px; background: #FFD6C8; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600;">E</div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="font-size: 16px; font-weight: 800;">Emma Lee</div>
+            <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">西雅图 · 母语 English · 在学中文</div>
+          </div>
+        </div>
+        <div style="font-size: 13px; font-weight: 600; color: #4A4766; line-height: 1.5;">你们都喜欢散步和咖啡</div>
+        <a href="DesktopPeerChat.dc.html" style="height: 44px; border-radius: 22px; background: #FFE27A; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; box-shadow: 0 4px 0 #D9B83F;">打个招呼</a>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 15px; font-weight: 800; margin-bottom: 4px;">正在聊</div>
+      <a href="DesktopPeerChat.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 18px; background: #FFF1EC;">
+        <div style="width: 40px; height: 40px; border-radius: 20px; background: #FFD6C8; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 600;">E</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+          <div style="font-size: 14px; font-weight: 800;">Emma Lee <span style="font-size: 11px; color: #5E5B78;">EN</span></div>
+          <div style="font-size: 12px; color: #5E5B78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">西雅图有很棒的海滨步道…</div>
+        </div>
+      </a>
+      <a href="DesktopPeerChat.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 18px;">
+        <div style="width: 40px; height: 40px; border-radius: 20px; background: #DDD7FF; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 600;">Y</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+          <div style="font-size: 14px; font-weight: 800;">Yuki <span style="font-size: 11px; color: #5E5B78;">日</span></div>
+          <div style="font-size: 12px; color: #5E5B78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">周末一起线上读书吗？</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="background: #FFFFFF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-size: 15px; font-weight: 800;">我的翻译偏好</div>
+      <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700;"><span style="color: #5E5B78;">外语内容译成</span><span>中文</span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700;"><span style="color: #5E5B78;">中文帖附上</span><span>English</span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700;"><span style="color: #5E5B78;">默认显示</span><span>{{ modeName }}</span></div>
+    </div>
+  </aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'para', tab: 0, word: 'barista', ctx: 'Ordered coffee in English for the first time today, and the barista got it right away! Next time I want to try asking for directions.' };
+  }
+  renderVals() {
+    const s = this.state;
+    const POSTS = [
+      { name: 'Emma Lee', handle: '@emma.reads · 西雅图 · 2 小时', initial: 'E', color: '#FFD6C8', from: 'English', tag: 'EN → 中', sep: ' ', tsep: '',
+        orig: ['Finally tried hot pot with friends tonight.', 'My tongue is still numb from the Sichuan pepper!', 'Any tips for a beginner?'],
+        tr: ['今晚终于和朋友去吃了火锅。', '花椒让我的舌头到现在还是麻的！', '新手有什么建议吗？'], stats: ['24', '6', '132'] },
+      { name: '小林', handle: '@xiaolin · 纽约 · 3 小时', initial: '林', color: '#C8F1E0', from: '中文', tag: '中 → EN', sep: '', tsep: ' ',
+        orig: ['今天第一次用英文点咖啡，店员一下就听懂了！', '下次想试试问路。'],
+        tr: ['Ordered coffee in English for the first time today, and the barista got it right away!', 'Next time I want to try asking for directions.'], stats: ['18', '2', '96'] },
+      { name: 'Kenji', handle: '@kenji_t · 大阪 · 5 小时', initial: 'K', color: '#DDD7FF', from: '日本語', tag: '日 → 中', sep: '', tsep: '',
+        orig: ['来月、初めてニューヨークに行きます。', '地元の人が行くおすすめのお店はありますか？'],
+        tr: ['下个月我第一次去纽约。', '有没有本地人常去的推荐小店？'], stats: ['31', '4', '88'] }
+    ];
+    const MAIN = 'font-size: 17px; line-height: 1.55; font-weight: 700; color: #1E1B3A;';
+    const SUB = 'font-size: 15px; line-height: 1.5; font-weight: 600; color: #5E5B78; margin-bottom: 8px;';
+    const BOX = 'font-size: 15px; line-height: 1.55; font-weight: 600; color: #4A4766; background: #F3F2F8; border-radius: 16px; padding: 12px 14px; margin-top: 10px;';
+    const DICT = {
+      finally: ['/ˈfaɪnəli/', 'adv.', '终于'], tried: ['/traɪd/', 'v.', '尝试（try 的过去式）'], hot: ['/hɒt/', 'adj.', '热的；辣的 · hot pot 火锅'],
+      pot: ['/pɒt/', 'n.', '锅 · hot pot 火锅'], with: ['/wɪð/', 'prep.', '和……一起'], friends: ['/frendz/', 'n.', '朋友们'],
+      tonight: ['/təˈnaɪt/', 'adv.', '今晚'], my: ['/maɪ/', 'pron.', '我的'], tongue: ['/tʌŋ/', 'n.', '舌头'], is: ['/ɪz/', 'v.', '是'],
+      still: ['/stɪl/', 'adv.', '仍然；还'], numb: ['/nʌm/', 'adj.', '麻木的；发麻的'], from: ['/frɒm/', 'prep.', '由于；来自'],
+      the: ['/ðə/', 'art.', '这；那'], sichuan: ['/ˌsɪtʃˈwɑːn/', 'n.', '四川 · Sichuan pepper 花椒'], pepper: ['/ˈpepə/', 'n.', '胡椒 · Sichuan pepper 花椒'],
+      any: ['/ˈeni/', 'det.', '任何；一些'], tips: ['/tɪps/', 'n.', '小建议；窍门'], for: ['/fɔː/', 'prep.', '给；为了'], a: ['/ə/', 'art.', '一（个）'],
+      beginner: ['/bɪˈɡɪnə/', 'n.', '新手；初学者'], ordered: ['/ˈɔːdəd/', 'v.', '点（餐）；订购'], coffee: ['/ˈkɒfi/', 'n.', '咖啡'],
+      in: ['/ɪn/', 'prep.', '用（某种语言）'], english: ['/ˈɪŋɡlɪʃ/', 'n.', '英语'], first: ['/fɜːst/', 'adj.', '第一次的'], time: ['/taɪm/', 'n.', '次；时间'],
+      today: ['/təˈdeɪ/', 'adv.', '今天'], and: ['/ænd/', 'conj.', '而且；和'], barista: ['/bəˈriːstə/', 'n.', '咖啡师'], got: ['/ɡɒt/', 'v.', '听懂（get 的过去式）'],
+      it: ['/ɪt/', 'pron.', '它'], right: ['/raɪt/', 'adv.', 'right away 马上'], away: ['/əˈweɪ/', 'adv.', 'right away 马上'], next: ['/nekst/', 'adj.', '下一个的'],
+      i: ['/aɪ/', 'pron.', '我'], want: ['/wɒnt/', 'v.', '想要'], to: ['/tuː/', 'prep.', '（动词不定式标记）'], try: ['/traɪ/', 'v.', '尝试'],
+      asking: ['/ˈɑːskɪŋ/', 'v.', '询问（ask）'], directions: ['/dəˈrekʃənz/', 'n.', '路线；方向']
+    };
+    const SAVED = { barista: 1 };
+    const BTN = 'border: 0; font: inherit; color: inherit; background: transparent; padding: 0 2px; margin: 0 -2px; border-radius: 6px; cursor: pointer;';
+    const SEL = 'border: 0; font: inherit; color: #1E1B3A; background: #FFE27A; padding: 0 2px; margin: 0 -2px; border-radius: 6px; cursor: pointer;';
+    const latin = (t) => /[A-Za-z]/.test(t) && !/[぀-ヿ一-鿿]/.test(t);
+    const tok = (text) => {
+      if (!latin(text)) return [{ isWord: false, t: '', p: text, css: '', pick: null }];
+      return text.split(' ').map((raw) => {
+        const m = raw.match(/^([A-Za-z']+)(.*)$/);
+        const key = m ? m[1].toLowerCase() : '';
+        if (!m || !DICT[key]) return { isWord: false, t: '', p: raw + ' ', css: '', pick: null };
+        return { isWord: true, t: m[1], p: m[2] + ' ', css: s.word === key ? SEL : BTN, pick: () => this.setState({ word: key, ctx: text }) };
+      });
+    };
+    const posts = POSTS.map((p) => {
+      let blocks;
+      if (s.mode === 'lines') {
+        blocks = [];
+        p.orig.forEach((o, i) => { blocks.push({ t: o, css: MAIN }); blocks.push({ t: p.tr[i], css: SUB }); });
+      } else if (s.mode === 'para') {
+        blocks = [{ t: p.orig.join(p.sep), css: MAIN }, { t: p.tr.join(p.tsep), css: BOX }];
+      } else if (s.mode === 'replace') {
+        blocks = [{ t: p.tr.join(p.tsep), css: MAIN }];
+      } else {
+        blocks = [{ t: p.orig.join(p.sep), css: MAIN }];
+      }
+      blocks = blocks.map((b) => ({ css: b.css, toks: tok(b.t) }));
+      return Object.assign({}, p, { blocks: blocks, replaced: s.mode === 'replace', reply: p.stats[0], rt: p.stats[1], like: p.stats[2] });
+    });
+    const MODES = [['lines', '逐句对照'], ['para', '整段翻译'], ['replace', '只看译文'], ['orig', '只看原文']];
+    const TABS = ['推荐', '关注', '同城'];
+    const e = s.word ? DICT[s.word] : null;
+    return {
+      hasWord: !!e,
+      closeWord: () => this.setState({ word: null }),
+      w: e ? { w: s.word, ph: e[0], pos: e[1], zh: e[2], ctx: s.ctx, saveLabel: SAVED[s.word] ? '已在词本' : '加入词本' } : { w: '', ph: '', pos: '', zh: '', ctx: '', saveLabel: '' },
+      posts: posts,
+      modeName: MODES.find((m) => m[0] === s.mode)[1],
+      modes: MODES.map((m) => ({
+        label: m[1], on: s.mode === m[0],
+        bg: s.mode === m[0] ? '#1E1B3A' : 'transparent',
+        fg: s.mode === m[0] ? '#FFFFFF' : '#4A4766',
+        pick: () => this.setState({ mode: m[0] })
+      })),
+      tabs: TABS.map((t, i) => ({
+        label: t, on: s.tab === i,
+        fg: s.tab === i ? '#1E1B3A' : '#5E5B78',
+        bar: s.tab === i ? '#FFC845' : 'transparent',
+        pick: () => this.setState({ tab: i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>电脑端 · 聊天主界面</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1B3A;text-decoration:none}a:hover{color:#5B48F2}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F2F8; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #1E1B3A; display: flex; flex-wrap: wrap; gap: 16px; padding: 16px;">
+
+  <aside style="flex: 1 1 250px; background: #FFFFFF; border-radius: 28px; padding: 20px 14px; display: flex; flex-direction: column; gap: 18px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3c11.6 0 21 8.4 21 19s-9.4 19-21 19c-2.6 0-5-.4-7.3-1.2L7 44l2.4-8.6C5.4 31.9 3 27.2 3 22 3 11.4 12.4 3 24 3z" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M18 28c3 3 9 3 12 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600;">Chatmate</div>
+    </div>
+
+    <nav aria-label="主导航" style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="DesktopChat.dc.html" aria-current="page" style="height: 44px; border-radius: 22px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+        聊天
+      </a>
+      <a href="DesktopChat.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg>
+        情景练习
+      </a>
+      <a href="DesktopCommunity.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        社区
+      </a>
+      <a href="DesktopVocab.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="14" rx="3"/><path d="M8 3h10a3 3 0 0 1 3 3v10"/></svg>
+        词本
+        <span style="margin-left: auto; min-width: 24px; height: 24px; border-radius: 12px; background: #FFE27A; color: #1E1B3A; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 6px; box-sizing: border-box;">6</span>
+      </a>
+      <a href="DesktopReading.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v17H5.5A2.5 2.5 0 0 1 3 17.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H13v17h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg>
+        阅读
+      </a>
+      <a href="Summary.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #4A4766;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c1 3.2 5.5 5.3 5.5 10.6a5.5 5.5 0 0 1-11 0c0-2.3 1-3.9 2.2-5 0 2.2 1 3.3 2.2 3.3 0-3.2-1.2-5.4 1.1-8.9z"/></svg>
+        每日小结
+      </a>
+    </nav>
+
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 8px;">
+        <div style="font-size: 13px; font-weight: 800; color: #5E5B78;">聊天伙伴</div>
+        <button aria-label="新对话" style="width: 32px; height: 32px; border-radius: 16px; border: 0; background: #F3F2F8; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
+      <a href="DesktopChat.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 20px; background: #FFF4CF;">
+        <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 29c3 4 11 4 14 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+          <div style="font-weight: 800; font-size: 15px;">Milo <span style="font-size: 12px; color: #4A3A00; font-weight: 700;">随性朋友</span></div>
+          <div style="font-size: 13px; color: #5E5B78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Which park do you usually go to?</div>
+        </div>
+      </a>
+      <a href="DesktopChat.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 20px;">
+        <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="14" fill="#5ED3A8"/><circle cx="17.5" cy="22" r="5" fill="none" stroke="#1E1B3A" stroke-width="2.2"/><circle cx="30.5" cy="22" r="5" fill="none" stroke="#1E1B3A" stroke-width="2.2"/><path d="M22.5 22h3" stroke="#1E1B3A" stroke-width="2.2"/><circle cx="17.5" cy="22" r="1.6" fill="#1E1B3A"/><circle cx="30.5" cy="22" r="1.6" fill="#1E1B3A"/><path d="M19 32c3 2 7 2 10 0" stroke="#1E1B3A" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+          <div style="font-weight: 800; font-size: 15px;">Ada <span style="font-size: 12px; color: #5E5B78; font-weight: 700;">耐心老师</span></div>
+          <div style="font-size: 13px; color: #5E5B78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">unwind 和 relax 有什么不同？</div>
+        </div>
+      </a>
+      <a href="DesktopChat.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 20px;">
+        <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3c7 0 10 4 14 7s7 7 7 14-3 11-7 14-7 7-14 7-10-4-14-7-7-7-7-14 3-11 7-14 7-7 14-7z" fill="#FF8C69"/><path d="M14.5 21.5q3-3 6 0" stroke="#1E1B3A" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="31" cy="21" r="2.6" fill="#1E1B3A"/><path d="M18 28q6 7 12 0z" fill="#1E1B3A"/></svg>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+          <div style="font-weight: 800; font-size: 15px;">Kai <span style="font-size: 12px; color: #5E5B78; font-weight: 700;">旅行搭子</span></div>
+          <div style="font-size: 13px; color: #5E5B78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">周末去海边，记得带件 windbreaker</div>
+        </div>
+      </a>
+      <a href="DesktopChat.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 20px;">
+        <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#B3A6FF"/><path d="M6 21c2-11 12-16 22-14s14 8 14 14c-6-1-12-4-15-9-3 5-12 9-21 9z" fill="#1E1B3A"/><path d="M15 27q3-3 6 0M27 27q3-3 6 0" stroke="#1E1B3A" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M20 34q4 3 8 0" stroke="#1E1B3A" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+          <div style="font-weight: 800; font-size: 15px;">Nora <span style="font-size: 12px; color: #5E5B78; font-weight: 700;">职场前辈</span></div>
+          <div style="font-size: 13px; color: #5E5B78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">我们来练练自我介绍吧</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="flex: 1;"></div>
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 20px; background: #F3F2F8;">
+      <div style="width: 40px; height: 40px; border-radius: 20px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800;">我</div>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="font-size: 14px; font-weight: 800;">连续 12 天</div>
+        <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">今天已聊 18 分钟</div>
+      </div>
+      <button aria-label="设置" style="width: 40px; height: 40px; border-radius: 20px; border: 0; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; min-height: calc(100vh - 32px); background: #FFFFFF; border-radius: 28px; display: flex; flex-direction: column; overflow: hidden;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1.5px solid #EEEDF5;">
+      <svg width="44" height="44" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 29c3 4 11 4 14 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+      <div style="display: flex; flex-direction: column; margin-right: auto;">
+        <div style="font-family: 'Fredoka', sans-serif; font-size: 20px; font-weight: 600; line-height: 1.1;">Milo</div>
+        <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">随性朋友 · 口语化，爱聊日常</div>
+      </div>
+      <div style="height: 44px; border-radius: 22px; background: #F3F2F8; display: flex; padding: 4px; box-sizing: border-box; gap: 2px;">
+        <button aria-pressed="true" style="border: 0; border-radius: 18px; background: #FFFFFF; padding: 0 16px; font-family: inherit; font-size: 14px; font-weight: 800; color: #1E1B3A; box-shadow: 0 2px 0 rgba(30,27,58,0.08);">英文 + 翻译</button>
+        <button style="border: 0; border-radius: 18px; background: transparent; padding: 0 16px; font-family: inherit; font-size: 14px; font-weight: 700; color: #4A4766;">渐进混合</button>
+      </div>
+      <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: #FFC845; font-family: inherit; font-size: 14px; font-weight: 800; color: #1E1B3A; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 0 #E3A91F;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>
+        语音聊
+      </button>
+    </div>
+
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; padding: 24px clamp(16px, 4vw, 56px); background: #FAFAFD;">
+      <div style="align-self: center; font-size: 12px; font-weight: 800; color: #5E5B78; background: #F3F2F8; border-radius: 12px; padding: 4px 12px;">今天 09:36</div>
+
+      <div style="align-self: flex-end; max-width: 520px; background: #5B48F2; color: #FFFFFF; border-radius: 24px 24px 6px 24px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.5;">今天工作好累，想去散步。</div>
+        <div style="border-top: 1.5px dashed rgba(255,255,255,0.45); padding-top: 8px; font-size: 15px; color: #EDEBFF; line-height: 1.5;">Work was exhausting today. I want to go for a walk.</div>
+      </div>
+
+      <div style="align-self: flex-start; display: flex; gap: 12px; max-width: 600px;">
+        <svg width="36" height="36" viewBox="0 0 48 48" style="flex: 0 0 auto;" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 29c3 4 11 4 14 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+        <div style="background: #FFFFFF; border: 1.5px solid #EEEDF5; border-radius: 24px 24px 24px 6px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 18px; font-weight: 700; line-height: 1.5;">A short walk might help you <span style="background: #FFE27A; border-radius: 6px; padding: 0 4px; box-shadow: 0 0 0 3px #1E1B3A;">unwind</span>. Do you have a favorite place to walk?</div>
+          <div style="font-size: 15px; color: #5E5B78; line-height: 1.5;">散一小会儿步，也许能让你放松下来。你有喜欢去散步的地方吗？</div>
+        </div>
+      </div>
+
+      <div style="align-self: flex-end; max-width: 520px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+        <div style="background: #E9E6FF; border-radius: 24px 24px 6px 24px; padding: 14px 18px; font-size: 17px; font-weight: 600; line-height: 1.6;">Yes! I <del style="color: #B42332; background: #FFDDE1; border-radius: 6px; padding: 0 3px; text-decoration-thickness: 2px;">am</del> want to <del style="color: #B42332; background: #FFDDE1; border-radius: 6px; padding: 0 3px; text-decoration-thickness: 2px;">walking</del> <ins style="color: #0B6E3E; background: #CDF2DC; border-radius: 6px; padding: 0 3px; text-decoration: none; font-weight: 800;">walk</ins> to the park near my home.</div>
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #4A4766;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B6E3E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>
+          want to 后接动词原形
+        </div>
+      </div>
+
+      <div style="align-self: flex-start; display: flex; gap: 12px; max-width: 600px;">
+        <svg width="36" height="36" viewBox="0 0 48 48" style="flex: 0 0 auto;" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 29c3 4 11 4 14 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+        <div style="background: #FFFFFF; border: 1.5px solid #EEEDF5; border-radius: 24px 24px 24px 6px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 18px; font-weight: 700; line-height: 1.5;">Nice! An evening walk in the park sounds <span style="background: #FFE27A; border-radius: 6px; padding: 0 4px;">peaceful</span>.</div>
+          <div style="font-size: 15px; color: #5E5B78; line-height: 1.5;">真好！傍晚在公园散步，听起来很惬意。</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 14px 20px 18px; display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid #EEEDF5;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <button aria-pressed="true" style="height: 36px; padding: 0 8px 0 14px; border-radius: 18px; border: 1.5px solid #D7D4E6; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 800; color: #1E1B3A; display: flex; align-items: center; gap: 8px;">
+          纠错
+          <span style="width: 34px; height: 22px; border-radius: 11px; background: #0B6E3E; display: flex; align-items: center; justify-content: flex-end; padding: 2px; box-sizing: border-box;"><span style="width: 18px; height: 18px; border-radius: 9px; background: #FFFFFF;"></span></span>
+        </button>
+        <button aria-pressed="true" style="height: 36px; padding: 0 8px 0 14px; border-radius: 18px; border: 1.5px solid #D7D4E6; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 800; color: #1E1B3A; display: flex; align-items: center; gap: 8px;">
+          把我的中文译成英文
+          <span style="width: 34px; height: 22px; border-radius: 11px; background: #5B48F2; display: flex; align-items: center; justify-content: flex-end; padding: 2px; box-sizing: border-box;"><span style="width: 18px; height: 18px; border-radius: 9px; background: #FFFFFF;"></span></span>
+        </button>
+        <button style="height: 36px; padding: 0 14px; border-radius: 18px; border: 0; background: #F3F2F8; font-family: inherit; font-size: 13px; font-weight: 700; color: #4A4766;">换个话题</button>
+        <button style="height: 36px; padding: 0 14px; border-radius: 18px; border: 0; background: #F3F2F8; font-family: inherit; font-size: 13px; font-weight: 700; color: #4A4766;">帮我用英文回</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; background: #F3F2F8; border-radius: 26px; padding: 6px 6px 6px 20px;">
+        <label for="d-input" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">输入消息</label>
+        <input id="d-input" placeholder="中文英文都行，Enter 发送" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; color: #1E1B3A; height: 44px;">
+        <button aria-label="语音输入" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </button>
+        <button aria-label="发送" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <aside style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box;">
+    <div style="background: #1E1B3A; color: #FFFFFF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="font-size: 12px; font-weight: 800; color: #C9C5F0;">点选的单词</div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-family: 'Fredoka', sans-serif; font-size: 34px; font-weight: 600; color: #FFE27A;">unwind</div>
+        <button aria-label="发音" style="width: 40px; height: 40px; border-radius: 20px; border: 0; background: rgba(255,255,255,0.14); color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+      </div>
+      <div style="font-size: 15px; color: #C9C5F0;">/ʌnˈwaɪnd/</div>
+      <div style="font-size: 17px; font-weight: 700;"><span style="color: #C9C5F0; font-weight: 600;">v.</span> 放松；舒缓</div>
+      <div style="background: rgba(255,255,255,0.08); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="font-size: 12px; font-weight: 800; color: #C9C5F0;">在这段聊天里</div>
+        <div style="font-size: 14px; line-height: 1.5;">A short walk might help you unwind.</div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button style="flex: 1; height: 44px; border-radius: 22px; border: 0; background: #FFE27A; color: #1E1B3A; font-family: inherit; font-size: 14px; font-weight: 800; box-shadow: 0 4px 0 #C9A63A;">加入词本</button>
+        <button style="flex: 1; height: 44px; border-radius: 22px; border: 1.5px solid rgba(255,255,255,0.3); background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 800;">问问 Milo</button>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="font-size: 15px; font-weight: 800;">这段聊天的新词</div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 12px; border-radius: 14px; background: #FFF4CF;">
+          <span style="font-weight: 800; font-size: 15px;">unwind</span><span style="font-size: 13px; color: #5E5B78;">放松</span>
+          <span style="margin-left: auto; font-size: 12px; font-weight: 800; color: #4A3A00;">已收藏</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 12px; border-radius: 14px; background: #F3F2F8;">
+          <span style="font-weight: 800; font-size: 15px;">peaceful</span><span style="font-size: 13px; color: #5E5B78;">宁静的</span>
+          <button aria-label="收藏 peaceful" style="margin-left: auto; width: 28px; height: 28px; border-radius: 14px; border: 0; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 12px; border-radius: 14px; background: #F3F2F8;">
+          <span style="font-weight: 800; font-size: 15px;">exhausting</span><span style="font-size: 13px; color: #5E5B78;">累人的</span>
+          <button aria-label="收藏 exhausting" style="margin-left: auto; width: 28px; height: 28px; border-radius: 14px; border: 0; background: #FFFFFF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <div style="font-size: 15px; font-weight: 800;">纠错记录</div>
+        <div style="font-size: 12px; font-weight: 700; color: #5E5B78;">本次 1 处</div>
+      </div>
+      <div style="background: #F3F2F8; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 14px; font-weight: 700;"><del style="color: #B42332; text-decoration-thickness: 2px;">am want to walking</del> → <ins style="color: #0B6E3E; text-decoration: none; font-weight: 800;">want to walk</ins></div>
+        <div style="font-size: 13px; color: #4A4766;">want to 后面直接接动词原形，不需要 am</div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

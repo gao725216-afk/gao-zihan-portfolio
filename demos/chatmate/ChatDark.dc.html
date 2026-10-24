@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>聊天 · 深色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#14122B}
+a{color:#F4F2FF;text-decoration:none}a:hover{color:#FFE27A}
+input::placeholder{color:#8F8AB5}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #14122B; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #F4F2FF; display: flex; flex-direction: column; padding: 54px 0 26px;">
+
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0 12px; height: 52px;">
+    <a href="MainDark.dc.html" aria-label="返回" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </a>
+    <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M17 29c3 4 11 4 14 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 19px; font-weight: 600; line-height: 1.1;">Milo</div>
+      <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">随性朋友 · 在线</div>
+    </div>
+    <a href="VoiceDark.dc.html" aria-label="语音聊天" style="width: 44px; height: 44px; border-radius: 22px; background: #211E3D; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>
+    </a>
+  </div>
+
+  <div style="margin: 6px 16px 0; height: 44px; border-radius: 22px; background: #211E3D; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; box-sizing: border-box;">
+    <a href="ChatDark.dc.html" aria-current="page" style="border-radius: 18px; background: #F4F2FF; color: #14122B; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800;">英文 + 翻译</a>
+    <a href="ChatMixDark.dc.html" style="border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #ABA7CC;">渐进混合</a>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; padding: 12px 16px;">
+
+    <div style="align-self: flex-end; max-width: 280px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+      <div style="background: #6E5CFF; color: #FFFFFF; border-radius: 22px 22px 6px 22px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 16px; line-height: 1.45; font-weight: 600;">今天工作好累，想去散步。</div>
+        <sc-if value="{{ tr }}" hint-placeholder-val="{{ true }}">
+          <div style="border-top: 1.5px dashed rgba(255,255,255,0.45); padding-top: 6px; font-size: 14px; line-height: 1.45; color: #EDEBFF;">Work was exhausting today. I want to go for a walk.</div>
+        </sc-if>
+      </div>
+      <div style="font-size: 11px; font-weight: 700; color: #ABA7CC;">09:36</div>
+    </div>
+
+    <div style="align-self: flex-start; max-width: 300px; display: flex; flex-direction: column;">
+      <div style="background: #211E3D; border-radius: 22px 22px 22px 6px; padding: 12px 14px 12px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 8px; align-items: flex-start;">
+          <div style="font-size: 17px; line-height: 1.45; font-weight: 700; flex: 1;">A short walk might help you <button onClick="{{ toggleWord }}" aria-expanded="{{ word }}" style="border: 0; padding: 0 4px; margin: 0; font: inherit; color: #1E1B3A; background: #FFE27A; border-radius: 6px; cursor: pointer;">unwind</button>.</div>
+          <button aria-label="朗读" style="width: 32px; height: 32px; border-radius: 16px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+          </button>
+        </div>
+        <div style="font-size: 14px; line-height: 1.45; color: #ABA7CC;">散一小会儿步，也许能让你放松下来。</div>
+      </div>
+
+      <sc-if value="{{ word }}" hint-placeholder-val="{{ true }}">
+        <div style="margin: 8px 0 0 12px; width: 268px; box-sizing: border-box; background: #F4F2FF; color: #1E1B3A; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px rgba(0,0,0,0.45);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="font-family: 'Fredoka', sans-serif; font-size: 26px; font-weight: 600; background: #FFE27A; border-radius: 8px; padding: 0 6px;">unwind</div>
+            <button aria-label="发音" style="width: 32px; height: 32px; border-radius: 16px; border: 0; background: #E4E2EF; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+            </button>
+            <div style="font-size: 14px; color: #5E5B78; margin-left: auto;">/ʌnˈwaɪnd/</div>
+          </div>
+          <div style="font-size: 15px; font-weight: 700;"><span style="color: #5E5B78; font-weight: 600;">v.</span> 放松；舒缓</div>
+          <div style="font-size: 13px; color: #4A4766; background: #E4E2EF; border-radius: 12px; padding: 8px 10px;">在这里：下班后让自己放松下来</div>
+          <button style="height: 44px; border-radius: 22px; border: 0; background: #1E1B3A; color: #FFE27A; font-family: inherit; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            加入词本
+          </button>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="align-self: flex-end; max-width: 290px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+      <div style="background: #2C2850; color: #F4F2FF; border-radius: 22px 22px 6px 22px; padding: 12px 16px; font-size: 16px; line-height: 1.6; font-weight: 600;">
+        <sc-if value="{{ fix }}" hint-placeholder-val="{{ true }}">
+          <span>Yes! I <del style="color: #FF8E9B; background: rgba(255,80,100,0.18); border-radius: 6px; padding: 0 3px; text-decoration-thickness: 2px;">am</del> want to <del style="color: #FF8E9B; background: rgba(255,80,100,0.18); border-radius: 6px; padding: 0 3px; text-decoration-thickness: 2px;">walking</del> <ins style="color: #74E8AE; background: rgba(70,210,140,0.18); border-radius: 6px; padding: 0 3px; text-decoration: none; font-weight: 800;">walk</ins> to the park after dinner.</span>
+        </sc-if>
+        <sc-if value="{{ noFix }}" hint-placeholder-val="{{ false }}">
+          <span>Yes! I am want to walking to the park after dinner.</span>
+        </sc-if>
+      </div>
+      <sc-if value="{{ fix }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #ABA7CC;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#74E8AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>
+          want to 后接动词原形 · 09:37
+        </div>
+      </sc-if>
+    </div>
+
+  </div>
+
+  <div style="display: flex; gap: 8px; padding: 0 16px 8px;">
+    <button onClick="{{ toggleFix }}" aria-pressed="{{ fix }}" style="height: 44px; padding: 0 10px 0 14px; border-radius: 22px; border: 1.5px solid #38345E; background: #211E3D; font-family: inherit; font-size: 13px; font-weight: 800; color: #F4F2FF; display: flex; align-items: center; gap: 8px;">
+      纠错
+      <span style="width: 34px; height: 22px; border-radius: 11px; background: {{ fixTrack }}; display: flex; align-items: center; padding: 2px; box-sizing: border-box; justify-content: {{ fixAlign }};"><span style="width: 18px; height: 18px; border-radius: 9px; background: #FFFFFF;"></span></span>
+    </button>
+    <button onClick="{{ toggleTr }}" aria-pressed="{{ tr }}" style="height: 44px; padding: 0 10px 0 14px; border-radius: 22px; border: 1.5px solid #38345E; background: #211E3D; font-family: inherit; font-size: 13px; font-weight: 800; color: #F4F2FF; display: flex; align-items: center; gap: 8px;">
+      把我的中文译成英文
+      <span style="width: 34px; height: 22px; border-radius: 11px; background: {{ trTrack }}; display: flex; align-items: center; padding: 2px; box-sizing: border-box; justify-content: {{ trAlign }};"><span style="width: 18px; height: 18px; border-radius: 9px; background: #FFFFFF;"></span></span>
+    </button>
+  </div>
+
+  <div style="margin: 0 12px; display: flex; align-items: center; gap: 8px; background: #211E3D; border: 1.5px solid #38345E; border-radius: 28px; padding: 6px 6px 6px 18px;">
+    <label for="chat-input-d" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">输入消息</label>
+    <input id="chat-input-d" placeholder="中文英文都行，随便聊…" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 16px; color: #F4F2FF; height: 44px;">
+    <button aria-label="按住说话" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+    </button>
+    <button aria-label="发送" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #F4F2FF; color: #14122B; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    </button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { fix: true, tr: true, word: true };
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      fix: s.fix,
+      noFix: !s.fix,
+      tr: s.tr,
+      word: s.word,
+      fixTrack: s.fix ? '#2FA36B' : '#4A4578',
+      fixAlign: s.fix ? 'flex-end' : 'flex-start',
+      trTrack: s.tr ? '#6E5CFF' : '#4A4578',
+      trAlign: s.tr ? 'flex-end' : 'flex-start',
+      toggleFix: () => this.setState({ fix: !s.fix }),
+      toggleTr: () => this.setState({ tr: !s.tr }),
+      toggleWord: () => this.setState({ word: !s.word })
+    };
+  }
+}
+</script>
+</body>
+</html>

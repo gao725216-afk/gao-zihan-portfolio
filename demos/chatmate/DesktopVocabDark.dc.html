@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>电脑端 · 词本 · 深色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#14122B}
+a{color:#F4F2FF;text-decoration:none}a:hover{color:#FFE27A}
+input::placeholder{color:#8F8AB5}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #14122B; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #F4F2FF; display: flex; flex-wrap: wrap; gap: 16px; padding: 16px;">
+
+  <aside style="flex: 1 1 250px; background: #211E3D; border-radius: 28px; padding: 20px 14px; display: flex; flex-direction: column; gap: 18px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3c11.6 0 21 8.4 21 19s-9.4 19-21 19c-2.6 0-5-.4-7.3-1.2L7 44l2.4-8.6C5.4 31.9 3 27.2 3 22 3 11.4 12.4 3 24 3z" fill="#FFC845"/><circle cx="18" cy="21" r="2.6" fill="#1E1B3A"/><circle cx="30" cy="21" r="2.6" fill="#1E1B3A"/><path d="M18 28c3 3 9 3 12 0" stroke="#1E1B3A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600;">Chatmate</div>
+    </div>
+    <nav aria-label="主导航" style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="DesktopChatDark.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #ABA7CC;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+        聊天
+      </a>
+      <a href="DesktopChatDark.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #ABA7CC;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg>
+        情景练习
+      </a>
+      <a href="DesktopCommunityDark.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #ABA7CC;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        社区
+      </a>
+      <a href="DesktopVocabDark.dc.html" aria-current="page" style="height: 44px; border-radius: 22px; background: #F4F2FF; color: #14122B; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="14" rx="3"/><path d="M8 3h10a3 3 0 0 1 3 3v10"/></svg>
+        词本
+        <span style="margin-left: auto; min-width: 24px; height: 24px; border-radius: 12px; background: #FFE27A; color: #1E1B3A; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 6px; box-sizing: border-box;">6</span>
+      </a>
+      <a href="DesktopReadingDark.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #ABA7CC;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v17H5.5A2.5 2.5 0 0 1 3 17.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H13v17h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg>
+        阅读
+      </a>
+      <a href="SummaryDark.dc.html" style="height: 44px; border-radius: 22px; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; font-weight: 700; color: #ABA7CC;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c1 3.2 5.5 5.3 5.5 10.6a5.5 5.5 0 0 1-11 0c0-2.3 1-3.9 2.2-5 0 2.2 1 3.3 2.2 3.3 0-3.2-1.2-5.4 1.1-8.9z"/></svg>
+        每日小结
+      </a>
+    </nav>
+    <div style="flex: 1;"></div>
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 20px; background: #2C2850;">
+      <div style="width: 40px; height: 40px; border-radius: 20px; background: #F4F2FF; color: #14122B; display: flex; align-items: center; justify-content: center; font-weight: 800;">我</div>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="font-size: 14px; font-weight: 800;">连续 12 天</div>
+        <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">今天已聊 18 分钟</div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; min-height: calc(100vh - 32px); display: flex; flex-direction: column; gap: 16px;">
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+      <div style="flex: 2 1 420px; background: #5ED3A8; color: #1E1B3A; border-radius: 28px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; box-shadow: 0 6px 0 #2A8F69;">
+        <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 13px; font-weight: 800; color: #0B4A33;">今天的复习</div>
+          <div style="font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 34px; font-weight: 600; line-height: 1.15;">6 个词在等你</div>
+          <div style="font-size: 14px; font-weight: 700; color: #0B4A33;">都是你在聊天和阅读里亲手收藏的</div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="SpellDark.dc.html" style="height: 52px; padding: 0 22px; border-radius: 26px; background: #1E1B3A; color: #FFFFFF; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 0 #0A0918;">
+            拼写练习
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button style="height: 52px; padding: 0 22px; border-radius: 26px; border: 0; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 800; color: #1E1B3A;">听音选义</button>
+        </div>
+      </div>
+      <div style="flex: 1 1 220px; background: #211E3D; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+        <div style="font-size: 13px; font-weight: 800; color: #ABA7CC;">词本一共</div>
+        <div style="font-family: 'Fredoka', sans-serif; font-size: 40px; font-weight: 600; line-height: 1;">128</div>
+        <div style="font-size: 13px; font-weight: 700; color: #ABA7CC;">其中 41 个已经很熟</div>
+      </div>
+    </div>
+
+    <div style="background: #211E3D; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-right: auto;">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+            <button onClick="{{ f.pick }}" aria-pressed="{{ f.on }}" style="height: 40px; padding: 0 16px; border-radius: 20px; border: 0; font-family: inherit; font-size: 14px; font-weight: 800; background: {{ f.bg }}; color: {{ f.fg }};">{{ f.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; height: 44px; border-radius: 22px; background: #14122B; padding: 0 16px; width: 260px; max-width: 100%; box-sizing: border-box;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ABA7CC" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <label for="vsearch-d" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">搜索词本</label>
+          <input id="vsearch-d" placeholder="搜单词或中文" style="flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 15px; color: #F4F2FF;">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 14px;">
+        <sc-for list="{{ words }}" as="w" hint-placeholder-count="8">
+          <div style="border-radius: 24px; background: {{ w.tint }}; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div style="font-family: 'Fredoka', sans-serif; font-size: 24px; font-weight: 600;">{{ w.en }}</div>
+              <button aria-label="朗读 {{ w.en }}" style="width: 36px; height: 36px; border-radius: 18px; border: 0; background: #14122B; color: #F4F2FF; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+              </button>
+            </div>
+            <div style="font-size: 15px; font-weight: 700;">{{ w.zh }}</div>
+            <div style="font-size: 12px; font-weight: 700; color: #C9C5F0;">{{ w.src }}</div>
+            <div style="display: flex; align-items: center; gap: 4px;">
+              <sc-for list="{{ w.dots }}" as="d" hint-placeholder-count="4">
+                <span style="width: 22px; height: 6px; border-radius: 3px; background: {{ d.c }};"></span>
+              </sc-for>
+              <span style="margin-left: 6px; font-size: 12px; font-weight: 800; color: #C9C5F0;">{{ w.level }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 1 };
+  }
+  renderVals() {
+    const LABELS = ['全部 128', '待复习 6', '本周新增 19', '已熟悉 41'];
+    const T = { milo: 'rgba(255,200,69,0.14)', kai: 'rgba(255,140,105,0.16)', ada: 'rgba(94,211,168,0.16)', nora: 'rgba(179,166,255,0.16)', read: 'rgba(179,166,255,0.16)' };
+    const W = [
+      ['unwind', 'v. 放松；舒缓', '和 Milo 聊天 · 今天', 'milo', 1],
+      ['breath', 'n. 呼吸', '阅读《晚间散步》 · 今天', 'read', 1],
+      ['me time', 'n. 独处时间', '和 Kai 聊天 · 今天', 'kai', 2],
+      ['oat milk', 'n. 燕麦奶', '情景：咖啡店点单 · 今天', 'milo', 0],
+      ['peaceful', 'adj. 宁静的', '和 Milo 聊天 · 今天', 'milo', 0],
+      ['windbreaker', 'n. 防风外套', '和 Kai 聊天 · 昨天', 'kai', 2],
+      ['commute', 'n. 通勤', '和 Nora 聊天 · 周二', 'nora', 3],
+      ['exhausting', 'adj. 累人的', '和 Milo 聊天 · 周一', 'milo', 3]
+    ];
+    const LV = ['刚认识', '有点印象', '快记住了', '很熟了'];
+    return {
+      filters: LABELS.map((l, i) => ({
+        label: l,
+        on: i === this.state.filter,
+        bg: i === this.state.filter ? '#F4F2FF' : '#14122B',
+        fg: i === this.state.filter ? '#14122B' : '#F4F2FF',
+        pick: () => this.setState({ filter: i })
+      })),
+      words: W.map((w) => ({
+        en: w[0], zh: w[1], src: w[2], tint: T[w[3]],
+        level: LV[w[4]],
+        dots: [0, 1, 2, 3].map((k) => ({ c: k <= w[4] ? '#F4F2FF' : 'rgba(244,242,255,0.18)' }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

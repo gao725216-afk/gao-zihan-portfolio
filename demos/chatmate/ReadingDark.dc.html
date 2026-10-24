@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>阅读 · 深色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#0E0C20}
+a{color:#F4F2FF;text-decoration:none}a:hover{color:#FFE27A}
+input::placeholder{color:#8F8AB5}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0E0C20; position: relative; overflow: hidden; font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; color: #F4F2FF; display: flex; flex-direction: column; padding: 54px 0 34px;">
+
+  <div style="position: absolute; width: 320px; height: 320px; border-radius: 50%; background: #1C1838; top: -90px; right: -120px;" aria-hidden="true"></div>
+  <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: #1C1838; bottom: 150px; left: -110px;" aria-hidden="true"></div>
+
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0 12px; height: 52px; position: relative;">
+    <a href="MainDark.dc.html" aria-label="收起" style="width: 44px; height: 44px; border-radius: 22px; background: #211E3D; display: flex; align-items: center; justify-content: center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+      <div style="font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-size: 18px; font-weight: 600;">晚间散步</div>
+      <div style="font-size: 12px; font-weight: 700; color: #ABA7CC;">Ada 朗读 · 点任意单词查词</div>
+    </div>
+    <button onClick="{{ toggleZh }}" aria-pressed="{{ zh }}" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: {{ zhBg }}; color: {{ zhFg }}; font-family: inherit; font-size: 14px; font-weight: 800;">译</button>
+  </div>
+
+  <div style="margin: 10px 20px 0; height: 44px; border-radius: 22px; background: #211E3D; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; box-sizing: border-box; position: relative;">
+    <button onClick="{{ toListen }}" aria-pressed="{{ listen }}" style="border: 0; border-radius: 18px; background: {{ lBg }}; color: {{ lFg }}; font-family: inherit; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg>
+      听书
+    </button>
+    <button onClick="{{ toType }}" aria-pressed="{{ typing }}" style="border: 0; border-radius: 18px; background: {{ tBg }}; color: {{ tFg }}; font-family: inherit; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="3"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 15h10"/></svg>
+      打字跟写
+    </button>
+  </div>
+
+  <sc-if value="{{ listen }}" hint-placeholder-val="{{ false }}">
+    <div style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: 0 28px; position: relative;">
+      <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="5">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <sc-if value="{{ ln.on }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family: 'Fredoka', sans-serif; font-size: 32px; font-weight: 600; line-height: 1.3; color: #F4F2FF;"><sc-for list="{{ ln.toks }}" as="tk" hint-placeholder-count="3"><button onClick="{{ tk.pick }}" style="{{ tk.css }}">{{ tk.t }}</button><span>{{ tk.p }}</span></sc-for></div>
+            <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size: 18px; font-weight: 600; color: #C9C5F0;">{{ ln.zh }}</div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ ln.off }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ ln.pick }}" style="border: 0; background: transparent; padding: 0; text-align: left; font-family: inherit; display: flex; flex-direction: column; gap: 4px; cursor: pointer;">
+              <span style="font-size: 20px; font-weight: 700; line-height: 1.3; color: #8F8AB5;">{{ ln.en }}</span>
+              <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size: 14px; font-weight: 600; color: #8F8AB5;">{{ ln.zh }}</span>
+              </sc-if>
+            </button>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="padding: 0 24px; display: flex; flex-direction: column; gap: 8px; position: relative;">
+      <div style="height: 8px; border-radius: 4px; background: #2C2850; position: relative;">
+        <div style="width: 22%; height: 8px; border-radius: 4px; background: #FFE27A;"></div>
+        <div style="position: absolute; left: 22%; top: -5px; width: 18px; height: 18px; margin-left: -9px; border-radius: 9px; background: #FFE27A; box-shadow: 0 0 0 4px rgba(255,226,122,0.2);"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #ABA7CC;">
+        <span>00:42</span>
+        <span>03:18</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; position: relative;">
+      <button style="width: 52px; height: 52px; border-radius: 26px; border: 0; background: #211E3D; color: #F4F2FF; font-family: 'Fredoka', sans-serif; font-size: 15px; font-weight: 600;">0.8×</button>
+      <button onClick="{{ prev }}" aria-label="上一句" style="width: 52px; height: 52px; border-radius: 26px; border: 0; background: transparent; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h2v14H7z"/><path d="M19 5v14l-9-7z"/></svg>
+      </button>
+      <button onClick="{{ togglePlay }}" aria-label="{{ playLabel }}" style="width: 80px; height: 80px; border-radius: 40px; border: 0; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 0 #9C8230;">
+        <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg>
+        </sc-if>
+        <sc-if value="{{ paused }}" hint-placeholder-val="{{ false }}">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </sc-if>
+      </button>
+      <button onClick="{{ next }}" aria-label="下一句" style="width: 52px; height: 52px; border-radius: 26px; border: 0; background: transparent; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 5h2v14h-2z"/><path d="M5 5v14l9-7z"/></svg>
+      </button>
+      <button aria-label="跟读这一句" style="width: 52px; height: 52px; border-radius: 26px; border: 0; background: #211E3D; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ typing }}" hint-placeholder-val="{{ true }}">
+    <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 0 28px; position: relative;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button aria-label="播放这一句" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <div style="font-size: 14px; font-weight: 700; color: #ABA7CC;">第 {{ lineNo }} / 5 句 · 先听，再照着打</div>
+      </div>
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 34px; font-weight: 600; line-height: 1.35; white-space: pre-wrap;"><sc-for list="{{ chars }}" as="c" hint-placeholder-count="12"><span style="{{ c.css }}">{{ c.ch }}</span></sc-for></div>
+      <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 18px; font-weight: 600; color: #C9C5F0;">{{ curZh }}</div>
+      </sc-if>
+      <div style="align-self: flex-start; height: 34px; padding: 0 14px; border-radius: 17px; background: {{ statusBg }}; color: {{ statusFg }}; display: flex; align-items: center; font-size: 13px; font-weight: 800;">{{ status }}</div>
+    </div>
+
+    <div style="margin: 0 16px; background: #211E3D; border: 1.5px solid #38345E; border-radius: 28px; padding: 6px 6px 6px 18px; display: flex; align-items: center; gap: 8px; position: relative;">
+      <label for="type-along-d" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">照着打出这一句</label>
+      <input id="type-along-d" value="{{ typed }}" onChange="{{ onType }}" placeholder="照着上面打出这一句…" autocomplete="off" spellcheck="false" style="flex: 1; min-width: 0; height: 48px; border: 0; outline: none; background: transparent; color: #F4F2FF; font-family: inherit; font-size: 17px; font-weight: 600;">
+      <button onClick="{{ next }}" aria-label="下一句" style="width: 48px; height: 48px; border-radius: 24px; border: 0; background: #FFE27A; color: #1E1B3A; display: flex; align-items: center; justify-content: center;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div style="margin-top: 10px; text-align: center; font-size: 12px; font-weight: 700; color: #ABA7CC; position: relative;">打错的字母标成橙色，打完整句自动进入下一句</div>
+  </sc-if>
+
+  <sc-if value="{{ hasWord }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="查词" style="position: absolute; left: 12px; right: 12px; bottom: 24px; background: #211E3D; border: 1.5px solid #38345E; color: #F4F2FF; border-radius: 30px; padding: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -8px 40px rgba(0,0,0,0.6);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-family: 'Fredoka', sans-serif; font-size: 32px; font-weight: 600; color: #FFE27A;">{{ w.w }}</div>
+        <button aria-label="发音" style="width: 40px; height: 40px; border-radius: 20px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <button onClick="{{ closeWord }}" aria-label="关闭" style="margin-left: auto; width: 40px; height: 40px; border-radius: 20px; border: 0; background: #2C2850; color: #F4F2FF; display: flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div style="font-size: 15px; color: #ABA7CC; font-weight: 600;">{{ w.ph }}</div>
+      <div style="font-size: 18px; font-weight: 800;"><span style="color: #ABA7CC; font-weight: 600;">{{ w.pos }}</span> {{ w.zh }}</div>
+      <div style="background: #2C2850; border-radius: 16px; padding: 10px 12px; font-size: 14px; font-weight: 600; color: #C9C5F0;">在这句里：{{ w.ctx }}</div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <button style="height: 48px; border-radius: 24px; border: 0; background: {{ w.saveBg }}; color: {{ w.saveFg }}; font-family: inherit; font-size: 15px; font-weight: 800;">{{ w.saveLabel }}</button>
+        <a href="ChatDark.dc.html" style="height: 48px; border-radius: 24px; background: #F4F2FF; color: #14122B; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800;">问问 Ada</a>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'type', active: 1, zh: true, playing: true, word: null, typed: 'Take a bres' };
+  }
+  renderVals() {
+    const s = this.state;
+    const DICT = {
+      the: ['/ðə/', 'art.', '这；那'], city: ['/ˈsɪti/', 'n.', '城市'], is: ['/ɪz/', 'v.', '是'],
+      getting: ['/ˈɡetɪŋ/', 'v.', '变得（get 的进行时）'], quiet: ['/ˈkwaɪət/', 'adj.', '安静的'],
+      take: ['/teɪk/', 'v.', '做（一次动作）；拿'], a: ['/ə/', 'art.', '一（个）'], breath: ['/breθ/', 'n.', '呼吸；一口气'],
+      let: ['/let/', 'v.', '让'], day: ['/deɪ/', 'n.', '一天；白天'], slow: ['/sləʊ/', 'v.', '放慢'], down: ['/daʊn/', 'adv.', '（慢）下来'],
+      you: ['/juː/', 'pron.', '你'], "don't": ['/dəʊnt/', 'aux.', '不（= do not）'], have: ['/hæv/', 'v.', 'have to：必须'],
+      to: ['/tuː/', 'prep.', '（动词不定式标记）'], rush: ['/rʌʃ/', 'v.', '匆忙；赶'], just: ['/dʒʌst/', 'adv.', '只是；就'],
+      walk: ['/wɔːk/', 'v.', '走路；散步'], and: ['/ænd/', 'conj.', '和；然后'], your: ['/jɔː/', 'pron.', '你的'],
+      mind: ['/maɪnd/', 'n.', '头脑；思绪'], unwind: ['/ʌnˈwaɪnd/', 'v.', '放松；舒缓']
+    };
+    const NEW = { breath: 1, unwind: 1 };
+    const SAVED = { unwind: 1 };
+    const DATA = [
+      ['The city is getting quiet.', '城市渐渐安静下来。'],
+      ['Take a breath.', '深呼吸。'],
+      ['Let the day slow down.', '让这一天慢下来。'],
+      ["You don't have to rush.", '你不必总是匆匆忙忙。'],
+      ['Just walk, and let your mind unwind.', '走一走，让思绪放松下来。']
+    ];
+    const BTN = 'border: 0; font: inherit; padding: 0 4px; margin: 0 -2px; border-radius: 8px; cursor: pointer; ';
+    const toks = (line) => line.split(' ').map((raw) => {
+      const t = raw.replace(/[^A-Za-z']/g, '');
+      const key = t.toLowerCase();
+      let css = BTN + 'background: transparent; color: inherit;';
+      if (NEW[key]) css = BTN + 'background: #FFE27A; color: #1E1B3A;';
+      if (s.word === key) css = BTN + 'background: #F4F2FF; color: #14122B; box-shadow: 0 0 0 3px #FFE27A;';
+      return { t: t, p: raw.slice(t.length) + ' ', css: css, pick: () => this.setState({ word: key }) };
+    });
+    const lines = DATA.map((d, i) => ({
+      on: i === s.active, off: i !== s.active, en: d[0], zh: d[1], toks: toks(d[0]),
+      pick: () => this.setState({ active: i, typed: '' })
+    }));
+
+    const target = DATA[s.active][0];
+    const typed = s.typed;
+    let errors = 0;
+    const chars = target.split('').map((c, i) => {
+      let css = 'color: #6E6994;';
+      if (i < typed.length) {
+        if (typed[i] === c) css = 'color: #F4F2FF;';
+        else { css = 'color: #1E1B3A; background: #FF9F6E; border-radius: 4px;'; errors++; }
+      } else if (i === typed.length) css = 'color: #6E6994; box-shadow: inset 0 -4px 0 #FFE27A;';
+      return { ch: c, css: css };
+    });
+    const done = typed === target;
+    const pct = Math.round(100 * Math.min(typed.length, target.length) / target.length);
+    const status = done ? '这一句全对！' : (errors ? '有 ' + errors + ' 个字母要改' : (typed.length ? '已完成 ' + pct + '%' : '开始打字吧'));
+
+    const e = s.word ? DICT[s.word] : null;
+    const ctxLine = s.word ? (DATA.find((d) => d[0].toLowerCase().split(/[^a-z']+/).indexOf(s.word) >= 0) || DATA[s.active])[0] : '';
+    const saved = !!SAVED[s.word];
+    const listen = s.mode === 'listen';
+    return {
+      lines: lines,
+      zh: s.zh,
+      zhBg: s.zh ? '#F4F2FF' : '#211E3D',
+      zhFg: s.zh ? '#14122B' : '#F4F2FF',
+      toggleZh: () => this.setState({ zh: !s.zh }),
+      listen: listen,
+      typing: !listen,
+      lBg: listen ? '#F4F2FF' : 'transparent', lFg: listen ? '#14122B' : '#ABA7CC',
+      tBg: listen ? 'transparent' : '#F4F2FF', tFg: listen ? '#ABA7CC' : '#14122B',
+      toListen: () => this.setState({ mode: 'listen' }),
+      toType: () => this.setState({ mode: 'type', word: null }),
+      playing: s.playing, paused: !s.playing,
+      playLabel: s.playing ? '暂停' : '播放',
+      togglePlay: () => this.setState({ playing: !s.playing }),
+      prev: () => this.setState({ active: Math.max(0, s.active - 1), typed: '' }),
+      next: () => this.setState({ active: (s.active + 1) % DATA.length, typed: '' }),
+      chars: chars,
+      curZh: DATA[s.active][1],
+      lineNo: s.active + 1,
+      typed: typed,
+      onType: (ev) => this.setState({ typed: ev.target.value.slice(0, 120) }),
+      status: status,
+      statusBg: done ? '#5ED3A8' : (errors ? '#FF9F6E' : '#211E3D'),
+      statusFg: done || errors ? '#1E1B3A' : '#F4F2FF',
+      hasWord: listen && !!e,
+      closeWord: () => this.setState({ word: null }),
+      w: e ? {
+        w: s.word, ph: e[0], pos: e[1], zh: e[2], ctx: ctxLine,
+        saveLabel: saved ? '已在词本' : '加入词本',
+        saveBg: saved ? '#2C2850' : '#FFE27A',
+        saveFg: saved ? '#ABA7CC' : '#1E1B3A'
+      } : { w: '', ph: '', pos: '', zh: '', ctx: '', saveLabel: '', saveBg: '#FFE27A', saveFg: '#1E1B3A' }
+    };
+  }
+}
+</script>
+</body>
+</html>
