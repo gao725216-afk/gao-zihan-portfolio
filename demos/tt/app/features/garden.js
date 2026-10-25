@@ -12,6 +12,27 @@ import {FLOWER_CHOICES, normalizeFlower, setFlower} from '../domain/progress.js'
 import {toneOf} from './item-row.js';
 import {shortDate} from '../lib/dates.js';
 import {createEntrances} from '../lib/motion.js';
+import {categoryOf, CATEGORIES} from '../domain/understand.js';
+import {addDays} from '../lib/dates.js';
+
+// Incremental milestones: the island keeps gaining life as completions add up.
+// Nothing is ever taken away for days without activity.
+export const MILESTONES = [
+  {at: 5, id: 'butterfly', name: '蝴蝶来了', detail: '岛上飞来两只蝴蝶'},
+  {at: 15, id: 'birds', name: '小鸟落脚', detail: '树梢上有了小鸟'},
+  {at: 30, id: 'lantern', name: '小路亮灯', detail: '岸边亮起两盏灯'},
+  {at: 50, id: 'rainbow', name: '雨后彩虹', detail: '岛的上空出现彩虹'},
+  {at: 80, id: 'boat', name: '小船靠岸', detail: '一艘小船停在岸边'},
+];
+// Original vector decorations for the milestones (no third-party art).
+const RAINBOW = '<g class="g-rainbow" opacity=".42" fill="none" stroke-linecap="round">' + ['#ff7b7b', '#ffb547', '#ffe066', '#7ad67a', '#6cb8ff', '#a48bff'].map((c, i) => '<path d="M ' + (58 + i * 7) + ' 236 A ' + (162 - i * 7) + ' ' + (150 - i * 7) + ' 0 0 1 ' + (382 - i * 7) + ' 236" stroke="' + c + '" stroke-width="7"/>').join('') + '</g>';
+const BUTTERFLY = (x, y, c, d) => '<g class="g-fly" style="--d:' + d + 's" transform="translate(' + x + ' ' + y + ')"><g class="g-wings"><path d="M0 0 C-9 -10 -14 -2 -8 3 C-4 6 -1 3 0 0Z" fill="' + c + '"/><path d="M0 0 C9 -10 14 -2 8 3 C4 6 1 3 0 0Z" fill="' + c + '"/></g><path d="M0 -3 V4" stroke="#4a3f63" stroke-width="1.4" stroke-linecap="round"/></g>';
+const BUTTERFLIES = BUTTERFLY(150, 150, '#ff9fc6', 0) + BUTTERFLY(296, 176, '#ffd166', 1.4);
+const BIRD = (x, y, d) => '<path class="g-bird" style="--d:' + d + 's" d="M' + x + ' ' + y + ' q 6 -6 11 0 q 5 -6 11 0" fill="none" stroke="#3d4a66" stroke-width="2" stroke-linecap="round"/>';
+const BIRDS = BIRD(96, 74, 0) + BIRD(124, 60, .8) + BIRD(330, 86, 1.6);
+const LANTERN = (x, y) => '<g class="g-lantern"><path d="M' + x + ' ' + y + ' v-26" stroke="#6b4f3a" stroke-width="2.4" stroke-linecap="round"/><circle cx="' + x + '" cy="' + (y - 29) + '" r="10" fill="#ffd166" opacity=".35" class="g-glow"/><rect x="' + (x - 5) + '" y="' + (y - 35) + '" width="10" height="11" rx="3" fill="#ffc83d" stroke="#c98a00" stroke-width="1.2"/></g>';
+const LANTERNS = LANTERN(132, 286) + LANTERN(312, 284);
+const BOAT = '<g class="g-boat"><path d="M36 262 h44 l-7 9 h-30 z" fill="#b5835a"/><path d="M58 260 v-30 l16 26 z" fill="#fffbf5" stroke="#d9cbb5" stroke-width="1"/></g>';
 
 const TREES = [['treeGreen_low', '绿叶树'], ['treeBlue_low', '蓝叶树'], ['pineBlue_high', '松树']];
 const FLOWER_BY_TONE = {blue: 'flowerBlue', sage: 'flowerGreen', rose: 'flowerRed', peach: 'flowerYellow', slate: 'flowerWhite', task: 'flowerYellow'};
@@ -51,13 +72,14 @@ export function plantAsset(record, source) {
   if (record.maturity === 0) return 'bushGrass';
   const choice = normalizeFlower(record.gardenFlower);
   if (choice !== 'auto') return FLOWER_CHOICES.find(([id]) => id === choice)[2];
-  return FLOWER_BY_TONE[toneOf(source || {title: record.title, type: record.kind === 'task' ? 'task' : 'once'})] || 'flowerBlue';
+  return categoryOf(record.title).flower;
 }
 
 export function registerGarden(app) {
   // The island rises once per scene per session; reduced motion skips it.
   const entrances = createEntrances({duration: ENTRY_MS, reduced: () => matchMedia('(prefers-reduced-motion: reduce)').matches});
   const ui = () => ({page: null, selected: null, detail: null, ...app.ui('garden')});
+  let seenTotal, growUntil = 0;
   const events = () => app.state.doc.schedule.events;
 
   function model(progress, page) {
@@ -119,8 +141,9 @@ export function registerGarden(app) {
       const {w, h} = plantSize(selected);
       return html`<button type="button" class="g-hit is-spot" style="${style}" data-act="garden.place" data-slot="${s.slot}" aria-label="${'摆放到位置 ' + (s.slot + 1)}"><img src="${base + asset(selected) + '.png'}" alt="" style="${'--w:' + w.toFixed(1) + ';--h:' + h.toFixed(1)}"></button>`;
     });
+    const reached = new Set(MILESTONES.filter(m => v.total >= m.at).map(m => m.id));
     return html`<div class="${cx('island', entering && 'is-entering', selected && 'is-placing')}" data-garden-scene="${v.page}" data-key="${'island-' + key}">
-  <svg class="island-svg" viewBox="0 0 ${W} ${H}" aria-hidden="true">${raw('<ellipse cx="220" cy="232" rx="207" ry="113" class="g-sea"/><ellipse cx="220" cy="292" rx="160" ry="28" fill="#2e617c" opacity=".07"/>' + terrain + ripples + grass + decor + plants)}</svg>
+  <svg class="island-svg" viewBox="0 0 ${W} ${H}" aria-hidden="true">${raw((reached.has('rainbow') ? RAINBOW : '') + '<ellipse cx="220" cy="232" rx="207" ry="113" class="g-sea"/><ellipse cx="220" cy="292" rx="160" ry="28" fill="#2e617c" opacity=".07"/>' + (reached.has('boat') ? BOAT : '') + terrain + ripples + grass + decor + plants + (reached.has('lantern') ? LANTERNS : '') + (reached.has('birds') ? BIRDS : '') + (reached.has('butterfly') ? BUTTERFLIES : ''))}</svg>
   ${editable ? hits : ''}
 </div>`;
   }
@@ -182,6 +205,45 @@ export function registerGarden(app) {
 </aside>`;
   }
 
+  // ----- Accumulation -----------------------------------------------------------
+  // Big, growing numbers and the next milestone, the way incremental games show
+  // progress. Counts come from completion records only.
+  function counts(records) {
+    const c = {tree: 0, flower: 0, stone: 0};
+    for (const r of records) if (c[r.gardenReward?.kind] !== undefined) c[r.gardenReward.kind]++;
+    return c;
+  }
+  function tally(v, state, mini = false) {
+    const c = counts(v.records), next = MILESTONES.find(m => v.total < m.at), prev = [...MILESTONES].reverse().find(m => v.total >= m.at);
+    const last = v.records.map(r => r.date).sort().at(-1);
+    const away = last && last <= addDays(state.today, -3);
+    const from = prev ? prev.at : 0, ratio = next ? (v.total - from) / (next.at - from) : 1;
+    if (!mini) { if (seenTotal !== undefined && v.total > seenTotal) growUntil = Date.now() + 1400; seenTotal = v.total; }
+    const grew = Date.now() < growUntil;
+    return html`<div class="${cx('g-tally', mini && 'is-mini', grew && 'is-growing')}">
+  ${away && !mini ? html`<p class="g-welcome">${icon('heart')}欢迎回来。花园一切都好，一直在等你。</p>` : ''}
+  <div class="g-counts">
+    <span class="g-count is-total"><b class="num">${v.total}</b><small>件事长成了花园</small></span>
+    <span class="g-count"><img src="${root() + 'treeGreen_low.png'}" alt=""><b class="num">${c.tree}</b><small>树</small></span>
+    <span class="g-count"><img src="${root() + 'flowerYellow.png'}" alt=""><b class="num">${c.flower}</b><small>花</small></span>
+    <span class="g-count"><img src="${root() + 'smallRockStone.png'}" alt=""><b class="num">${c.stone}</b><small>石</small></span>
+  </div>
+  ${next ? html`<div class="g-milestone"><div class="g-milestone-copy"><span>${icon('sparkle')}再完成 <b>${next.at - v.total}</b> 件：${next.name}</span><small>${next.detail}</small></div><i class="g-milestone-bar"><i style="${'width:' + Math.round(ratio * 100) + '%'}"></i></i></div>` : html`<p class="g-milestone-done">${icon('sparkle')}所有里程碑都达成了，花园会继续长下去。</p>`}
+</div>`;
+  }
+  function rules(v) {
+    return html`<section class="panel panel-pad g-rules">
+  <div class="section-title"><h2>花园怎么长</h2></div>
+  <ul class="g-rule-list">
+    <li>${icon('check')}<span><b>每完成一件事，得到一份素材。</b>撤销完成时，这份素材会一起收回。</span></li>
+    <li>${icon('leaf')}<span><b>花色由 AI 按事项分类决定。</b><span class="g-cats">${CATEGORIES.map(c => html`<span class="g-cat"><img src="${root() + c.flower + '.png'}" alt="">${c.label}</span>`)}</span></span></li>
+    <li>${icon('heart')}<span><b>只积累，不惩罚。</b>几天没打开也没关系，花园不会枯萎，已经长出来的都在。</span></li>
+  </ul>
+  <h3 class="g-mile-title">里程碑</h3>
+  <ol class="g-miles">${MILESTONES.map(m => html`<li class="${v.total >= m.at ? 'is-on' : ''}"><span class="g-mile-at num">${m.at}</span><span><b>${m.name}</b><small>${m.detail}</small></span>${v.total >= m.at ? icon('check') : icon('lock')}</li>`)}</ol>
+</section>`;
+  }
+
   // ----- Public section renderers --------------------------------------------
   function section(state) {
     const u = ui();
@@ -191,6 +253,7 @@ export function registerGarden(app) {
     const defaultFlower = normalizeFlower(state.doc.progress.garden?.defaultFlower);
     return html`<div class="${cx('garden-layout', u.detail && 'has-detail')}">
   <section class="garden-card">
+    ${tally(v, state)}
     <div class="garden-top">${progressBar(v)}<span class="g-today">${icon('leaf')}今天 +${today.total}</span></div>
     <div class="garden-canvas">${scene(v, {editable: true})}</div>
     ${pager(v)}
@@ -199,6 +262,7 @@ export function registerGarden(app) {
   </section>
   <div class="garden-aside">
     ${details(v, state)}
+    ${rules(v)}
     <details class="panel panel-pad g-appearance">
       <summary>${icon('leaf')}新素材的花色<span class="muted">${FLOWER_CHOICES.find(([id]) => id === defaultFlower)[1]}</span></summary>
       <div class="g-options" role="group" aria-label="新素材花色">${FLOWER_CHOICES.map(([id, name, a]) => html`<button type="button" class="g-option" data-act="garden.flowerDefault" data-flower="${id}" aria-pressed="${defaultFlower === id ? 'true' : 'false'}"><img src="${root() + a + '.png'}" alt=""><span>${name}</span></button>`)}</div>
@@ -214,6 +278,7 @@ export function registerGarden(app) {
     const waiting = v.inventory.length;
     return html`<section class="panel garden-preview">
   <div class="section-title"><h2>花园</h2><span class="count">${v.total}</span><span class="spacer"></span><button type="button" class="link-btn" data-act="growth.tab" data-tab="garden">布置花园</button></div>
+  ${tally(v, state, true)}
   <a class="garden-preview-scene" href="?view=growth&amp;tab=garden" data-act="growth.tab" data-tab="garden" aria-label="${'打开花园，' + v.scene.name + '，' + (waiting ? waiting + ' 份素材待摆放' : '素材已摆好')}">${scene(v)}</a>
   ${progressBar(v)}
   ${waiting ? html`<button type="button" class="garden-nudge" data-act="growth.tab" data-tab="garden">${icon('leaf')}<span>${waiting} 份素材等你摆放</span>${icon('forward')}</button>` : ''}

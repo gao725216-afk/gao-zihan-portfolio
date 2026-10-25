@@ -15,6 +15,8 @@ import {registerHabits} from './features/habits.js';
 import {registerNotes} from './features/notes.js';
 import {registerSettings} from './features/settings.js';
 import {registerCompanion} from './features/companion.js';
+import {registerDiscovery} from './features/discovery.js';
+import {registerJuice} from './features/juice.js';
 import {createLocalSync, DEMO_USER} from './data/demo.js';
 
 const bootEl = document.getElementById('boot');
@@ -39,6 +41,8 @@ try {
   registerHabits(app);
   registerNotes(app);
   registerSettings(app);
+  registerDiscovery(app);
+  registerJuice(app);
   const root = document.getElementById('app');
   app.mount(root, renderShell);
   sync.start();

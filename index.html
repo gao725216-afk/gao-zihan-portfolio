@@ -229,9 +229,37 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
 .flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
 .flow li{position:relative;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:14px;background:var(--m-soft);font:800 14px/1.35 var(--f-body);animation:pop .5s var(--spring) both;animation-delay:var(--d)}
 .flow li b{width:22px;height:22px;border-radius:7px;background:var(--m);color:var(--m-on);display:grid;place-items:center;font:600 12px var(--f-round);flex:none}
+.flow li{max-width:100%}.flow li>span{min-width:0}
 .flow li small{display:block;font-weight:700;font-size:12px;color:var(--m-ink)}
 @keyframes pop{from{transform:translateY(10px) scale(.92);opacity:0}}
 .flowbox .fn{margin-top:14px;font:700 14px/1.65 var(--f-body);color:var(--ink-2)}
+/* story */
+.d-story{padding:clamp(28px,4vw,48px) clamp(22px,4vw,52px) 0;display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(26px,3.4vw,40px)}
+.d-story h3{font:800 12px/1 var(--f-body);letter-spacing:.08em;color:var(--ink-3);margin-bottom:14px}
+.pains{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.pain{background:#fff;border-radius:20px;box-shadow:inset 0 0 0 1.5px var(--line);padding:16px 18px}
+.pain .who{display:inline-block;font:800 11.5px/1 var(--f-body);color:var(--m-ink);background:var(--m-soft);padding:5px 9px;border-radius:999px;margin-bottom:10px}
+.pain b{display:block;font:800 16px/1.4 var(--f-body);margin-bottom:4px}
+.pain p{margin:0;font:600 14px/1.65 var(--f-body);color:var(--ink-2)}
+.hard{display:grid;gap:10px}
+.hard>div{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:18px;align-items:start;background:#fff;border-radius:20px;box-shadow:inset 0 0 0 1.5px var(--line);padding:16px 18px}
+@media (max-width:700px){.hard>div{grid-template-columns:minmax(0,1fr);gap:6px}}
+.hard .pb{display:flex;gap:10px;align-items:flex-start;font:800 16px/1.45 var(--f-body)}
+.hard .pb i{width:10px;height:10px;border-radius:50%;background:var(--m);flex:none;margin-top:7px;box-shadow:0 0 0 4px var(--m-soft)}
+.hard .sv{font:600 14.5px/1.7 var(--f-body);color:var(--ink-2)}
+.wfbox{background:var(--m-soft);border-radius:24px;padding:20px 22px}
+.wf{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;counter-reset:w}
+.wf li{position:relative;background:#fff;border-radius:16px;padding:12px 14px;font:800 14.5px/1.4 var(--f-body);box-shadow:0 3px 0 rgba(43,42,76,.07)}
+.wf li::before{counter-increment:w;content:counter(w);display:grid;place-items:center;width:22px;height:22px;border-radius:7px;background:var(--m);color:var(--m-on);font:600 12px var(--f-round);margin-bottom:8px}
+.wf li small{display:block;font-weight:700;font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.wfbox .fn{margin:14px 0 0;font:700 14px/1.65 var(--f-body);color:var(--m-ink)}
+.mg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.mg{grid-template-columns:minmax(0,1fr)}}
+.mg>div{background:#fff;border-radius:24px;box-shadow:var(--pressed);padding:20px 22px}
+.mg ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.mg li{position:relative;padding-left:20px;font:700 14.5px/1.65 var(--f-body)}
+.mg li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:3px;background:var(--m)}
+.mg li em{font-style:normal;color:var(--ink-3)}
 </style>
 
 <div class="wrap">
@@ -242,13 +270,13 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
 
   <section class="intro">
     <div>
-      <h1>你好，我是<span class="hl">高梓晗</span></h1>
-      <p>北大光华，金融经济在读。我习惯把一个想法从头做到能用：想清楚做什么，写前后端，再交给真实用户。点开任意作品看细节。</p>
+      <h1><span class="hl">高梓晗</span> 作品集</h1>
+      <p>北京大学光华管理学院金融经济专业在读。专注于借助 AI 工具完成产品的全流程开发，涵盖需求分析、前后端实现与上线交付。点击任一项目可查看详情。</p>
     </div>
-    <div class="meta"><span class="chip">6 个作品</span><span class="chip live"><i></i>4 个可现场操作</span></div>
+    <div class="meta"><span class="chip">项目 6 个</span><span class="chip live"><i></i>可交互演示 4 个</span></div>
   </section>
 
-  <div class="sec-h"><h2>作品</h2><span>点卡片展开 · 键盘 1–6 直达</span></div>
+  <div class="sec-h"><h2>项目</h2><span>点击卡片查看详情</span></div>
   <div class="grid" id="grid"></div>
 
   <footer>高梓晗 · 北京大学光华管理学院 · 演示均使用虚构数据</footer>
@@ -291,77 +319,102 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
 
   const P=[
     {id:'algochoice',k:'algo',name:'AlgoChoice',no:'01',sub:'类抖音短视频实验平台',m:['#FF8A5C','#FFE9DF','#C4531F','#D9663A'],
-     one:'推荐算法只有开和关，我想给用户第三个选项。',
+     one:'将个性化推荐由“开关”拓展为可调节的连续程度。',
      cover:`<div class="mini-feed lift"><div class="in"><div class="tk">${feedTiles()}</div></div></div>`,
-     lead:'在抖音推荐流里按固定比例混入随机视频，用自建 App 观察用户怎么看、怎么选。',
-     chips:['独立完成','首版 1 天','约 4 周完成核心系统'],
-     why:'流媒体的个性化推荐通常只给开或关两个选项。教授提出了“给用户更多选择权”的研究议题，我把它落成一个能测量的实验：在推荐和随机之间加一档，看用户的真实行为。',
-     flow:['抖音原始推荐流','按固定比例混入随机视频','自建 App 呈现','采集行为与问卷反馈'],
-     flowNote:'从研究设计、视频流获取到开发部署都由我完成，部署在阿里云 ECS。',
-     demo:`<div class="dfeed"><div class="fp" aria-hidden="true"><div class="in"><div class="tk">${feedTiles()}</div></div></div><div class="legend"><div><i style="background:linear-gradient(150deg,#FF8A5C,#A88BFF)"></i>原始推荐流</div><div><i style="background:#24234A;box-shadow:inset 0 0 0 2px #2DC98A"></i>随机视频</div><div><i style="background:conic-gradient(#A88BFF 0 72%,#2DC98A 0)"></i>按固定比例混合呈现</div></div></div>`,
-     did:['研究设计与视频流获取策略','自建类短视频 App：内容呈现、行为采集、问卷反馈','1 天交付可运行首版，约 4 周完成核心系统','组织 Opus 4.6 与 Codex 分工开发'],
-     facts:[['角色','独立完成'],['部署','阿里云 ECS'],['AI 协作','Opus 4.6 + Codex']]},
+     lead:'面向北京大学研究项目的短视频实验平台。被试首先在预热阶段自然浏览，系统据此建立兴趣画像；进入测量阶段后，系统按设定比例混合推荐内容与随机内容，并完整记录用户行为。',
+     chips:['北京大学研究项目','独立完成','首版 1 天','核心系统约 4 周'],
+     why:'现有短视频平台通常仅提供开启或关闭个性化推荐两种选择。本研究关注：当用户能够自主决定个性化推荐的程度时，其自主感与观看行为将如何变化。由于商业平台的推荐算法无法由研究者控制，因此需要构建一个可控的实验环境。',
+     flow:['预热阶段<small>自然浏览 30 分钟，建立兴趣画像</small>','冻结兴趣画像','测量阶段<small>按个性化程度混合推荐与随机内容</small>','记录行为数据与问卷反馈'],
+     flowNote:'冻结兴趣画像可确保测量阶段仅有个性化程度这一变量发生变化。对照组采用完全随机推荐，实验组可自主调节个性化程度。',
+     demo:`<div class="dfeed"><div class="fp" aria-hidden="true"><div class="in"><div class="tk">${feedTiles()}</div></div></div><div class="legend"><div><i style="background:linear-gradient(150deg,#FF8A5C,#A88BFF)"></i>按兴趣推荐</div><div><i style="background:#24234A;box-shadow:inset 0 0 0 2px #2DC98A"></i>随机内容</div><div><i style="background:conic-gradient(#A88BFF 0 72%,#2DC98A 0)"></i>按个性化程度混合并打乱顺序</div></div></div>`,
+     story:{
+       pains:[
+         ['研究者','推荐算法不可控','商业平台的推荐机制不透明，研究者无法设定个性化程度，研究变量难以控制。'],
+         ['研究者','数据需精确对齐','每条行为记录均需关联至具体的实验与分组，以保证后续分析的有效性。'],
+         ['被试','体验需接近真实','若内容与交互体验明显有别于真实平台，或出现卡顿，被试行为将偏离日常习惯。']],
+       hard:[
+         ['视频获取','公开的开源爬取库无法稳定获取视频。经分析，接口返回的数据中包含播放地址，但该地址为短时有效的 CDN 直链，且须携带特定请求头方可访问。最终方案为：视频池仅存储元数据，播放时由服务器统一携带请求头实时解析地址，缓存 4 分钟，并预先解析后续视频。'],
+         ['平台风控','通过分档测试确定请求频率：单一账号自每分钟 30 次逐级提升至 90 次，均未触发风控，据此设定运行参数，并将并发请求上限设为 5。'],
+         ['并行开发集成','后期采用多个子代理并行开发以提升效率，但模块之间出现衔接缺失。为此制定主集成规则：跨模块任务须预先明确接口约定，由主代理负责全链路集成，未完成集成的功能不视为完成。']],
+       wf:{t:'AI 协作开发流程',
+         steps:['借助产品经理 Skill 梳理需求，形成 PRD','将工程规范整理为 CLAUDE.md 全局规则','由 Opus 4.6 拆解任务，Codex 完成编码','由 Opus 审阅代码并生成测试，通过后进入下一任务'],
+         note:'项目进度、缺陷记录与交接说明统一维护于 Notion，作为各模型共同遵循的信息来源。'},
+       move:['实验分组与数据口径管理的经验，可应用于线上 A/B 测试与灰度发布。','在时效与限流约束下对接外部接口的经验，可迁移至银行、支付及发票平台的系统对接。'],
+       gain:['AI 能够显著提升开发效率，但代码质量与一致性须依靠规则与测试加以保障。','功能完成应以全链路贯通为标准，而非单一模块的实现。','面对技术障碍时，理解底层机制往往比更换工具更为有效。']},
+     did:['与导师共同将研究问题转化为可配置的实验方案','设计并实现推荐算法与视频获取机制','开发被试端应用与研究者管理后台','建立规范化的 AI 协作开发流程'],
+     facts:[['角色','独立完成'],['技术','React · FastAPI · PostgreSQL'],['部署','阿里云'],['AI 协作','Opus 4.6 + Codex']]},
     {id:'tt',k:'tt',name:'TT Suite',no:'02',sub:'AI 日程与待办助手',m:['#6C5CE7','#ECE9FF','#4B3DBB','#4B3DBB'],live:1,
-     one:'一句话交给 AI，它帮你拆成任务、排进日历。',
+     one:'以自然语言完成日程的创建、拆解与安排。',
      cover:`<div class="shot lift"><img src="img/tt-today.webp" alt=""></div>`,
-     lead:'跨设备的日程和待办工具：AI 帮你安排日程、拆解目标、定时提醒，完成的事会长成一座花园。',
-     chips:['主要开发者','开源二次开发','Web · Windows · Android · 小程序'],
-     why:'想让 AI 不只是回答问题，而是真的把一句“下周要交报告”变成日历上能执行的安排；再用一座会长大的花园，给完成任务一点看得见的回报。',
-     flow:['一句话输入','模型返回结构化建议<small>新建 · 拆解 · 追问</small>','服务端校验','预览，确认后才保存','多端同步'],
-     flowNote:'信息不全时先追问；模型输出不合格就不入库，所有 ID 由服务端生成。',
-     demo:`<div class="row">${browser('demos/tt/index.html',1280,800,'TT Suite','TT Suite · 本地演示','img/tt-today.webp')}</div>`,
-     acts:`<span class="hint">点「成长」看花园 🌱</span><a class="btn w sm" href="demos/tt/index.html" target="_blank" rel="noopener">公开演示 ↗</a><a class="btn w sm" href="demos/tt/mobile-preview.html" target="_blank" rel="noopener">手机版 ↗</a>`,
+     lead:'跨设备的日程与待办管理工具。AI 助手可根据自然语言安排日程、拆解目标并定时提醒，已完成的事项将以成长花园的形式呈现。',
+     chips:['主要开发者','开源项目二次开发','Web · Windows · Android · 小程序'],
+     why:'现有日程软件要求用户手动填写日期、时间、提醒与重复规则等多项内容，操作成本较高，用户往往因此放弃记录，进而导致日程冲突。本项目的目标是让用户仅凭一句话，或在微信中转发一条消息，即可完成日程整理。',
+     flow:['自然语言输入','AI 生成结构化建议<small>新建、拆解或追问</small>','服务端校验与用户确认','保存并多端同步'],
+     flowNote:'信息不完整时，AI 将先行追问；不符合规则的输出不会写入用户数据。',
+     demo:`<div class="row">${browser('demos/tt/index.html',1280,800,'TT Suite','gao725216-afk.github.io/tt-suite-demo','img/tt-today.webp')}</div>`,
+     acts:`<span class="hint">点击「成长」查看花园</span><a class="btn w sm" href="https://gao725216-afk.github.io/tt-suite-demo/" target="_blank" rel="noopener">公开演示 ↗</a><a class="btn w sm" href="https://gao725216-afk.github.io/tt-suite-demo/mobile-preview.html" target="_blank" rel="noopener">手机版 ↗</a>`,
      full:['demos/tt/index.html','TT Suite',0],
-     did:['基于开源项目，承担后续主要研发','独立完成前端设计开发与前后端集成','实现邮箱及微信登录、微信端 Agent 对话','持续迭代桌面与 Web 原型，完善多端协同'],
+     story:{
+       pains:[
+         ['录入','操作成本高','日期、时间、提醒与重复规则等选项繁多，用户容易因此放弃记录。'],
+         ['收集','信息来源分散','大量安排来源于微信消息，需要手动转录至日程软件。'],
+         ['冲突','缺乏统一视图','日程未被集中记录时，时间冲突难以及时发现。']],
+       hard:[
+         ['AI 输出可靠性','模型不直接修改数据，仅返回结构化建议；服务端校验字段取值与账号归属，所有 ID 由服务端生成，经用户预览确认后方可写入。'],
+         ['信息不完整','AI 仅针对关键缺失信息进行追问并提供候选选项；多轮对话的草稿上下文保留 15 分钟，并以版本号防止覆盖。'],
+         ['多端同步冲突','采用基于版本号的乐观同步机制，不同字段的修改自动合并，同一字段的冲突交由用户选择。']],
+       move:['“自然语言、结构化操作、校验、确认”的模式，可应用于智能报销、发票记账等财务场景。','多端同步与冲突合并机制，适用于多人协同编辑同一单据的场景。'],
+       gain:['AI 产品的关键在于明确边界：模型提出建议，系统负责校验，用户最终决策。','数据同步、账号安全与消息提醒等基础能力，决定了产品能否被持续使用。']},
+     did:['基于开源项目承担后续主要研发工作','负责前端设计开发及前后端集成','实现邮箱与微信登录，以及微信端 AI 助手对话'],
      facts:[['角色','主要开发者'],['后端','Node · SQLite'],['模型','DeepSeek']]},
     {id:'orchard',k:'orchard',name:'Orchard',no:'03',sub:'果园业务小程序',m:['#FF6FA5','#FFE5EF','#C83A72','#D24E86'],live:1,
-     one:'一家果园的小程序和后台：购票、核销、称重、收款。',
+     one:'为果园经营者开发的小程序与商户后台，覆盖购票、核销、称重与收款。',
      cover:`<div class="ph lift"><img src="img/or-home.webp" alt=""></div>`,
-     lead:'接单项目。顾客在小程序里购票、看团购核销指引；店员在后台核销入园、称重计价、收款，账目分口径记清楚。',
-     chips:['独立开发','线上接单 · 开发中'],
-     why:'果园经营者需要把采摘、果品邮寄、亲子和团建放进一个小程序。难点在线下：团购核销、称重计价这些现场动作，要和线上的订单、账目对得上。',
-     flow:['验券入园<small>SY1001</small>','称重<small>1.700 kg = 3.4 斤</small>','× 40 元/斤','应收 ¥136.00','生成一条收款<small>入园券 ¥58 单独记账</small>'],
-     flowNote:'订单金额、实收、退款、手续费、平台待结算分开记账；金额按整数“分”、重量按整数“克”计算，重复点击只生成一条收款。',
+     lead:'外包开发项目。顾客可通过小程序购票并查看团购核销指引；店员可在商户后台完成入园核销、称重计价与收款，账目按不同口径分别记录。',
+     chips:['独立开发','外包项目 · 开发中'],
+     why:'果园经营者希望将采摘、果品邮寄、亲子及团建等业务整合至同一小程序。项目难点在于线下环节：团购核销与称重计价等现场操作，需要与线上订单及账目保持一致。',
+     flow:['验券入园<small>SY1001</small>','称重<small>净重 1.700 kg，即 3.4 斤</small>','按 40 元/斤计价','应收 ¥136.00','生成收款记录<small>入园券 ¥58 单独记账</small>'],
+     flowNote:'订单金额、实收、退款、手续费与平台待结算分别记账；金额以“分”、重量以“克”为单位进行整数运算，重复操作仅生成一条收款记录。',
      demo:`<div class="row">${phone('demos/orchard/index.html','Orchard · 顾客端','img/or-home.webp',230)}${browser('demos/merchant/index.html',1280,800,'Orchard · 商户后台','商户后台','img/mer-work.webp')}</div>`,
-     acts:`<span class="hint">后台「验券入园」查询 SY1001 🍓</span><a class="btn w sm" href="demos/orchard/index.html" target="_blank" rel="noopener">顾客端预览 ↗</a>`,
+     acts:`<span class="hint">在后台「验券入园」中查询 SY1001</span><a class="btn w sm" href="https://gao725216-afk.github.io/lufeng-orchard-preview/" target="_blank" rel="noopener">顾客端预览 ↗</a>`,
      full:['demos/merchant/index.html','Orchard · 商户后台',0],
-     did:['和客户梳理业务流程','顾客端小程序：购票、团购核销指引、分类点单、邀请','商户后台：核销、称重、模拟收款交互原型，共 11 个页面','分口径账目、退款冲回、重复操作保护'],
+     did:['与客户共同梳理业务流程','开发顾客端小程序，包括购票、团购核销指引与分类点单','开发商户后台交互原型（共 11 个页面），涵盖核销、称重、收款与分口径账目'],
      facts:[['角色','独立开发'],['技术','小程序 · React · TDesign'],['状态','开发中']]},
     {id:'pku',k:'pku',name:'PKU with AI',no:'04',sub:'北大学生 AI 工具入门',m:['#4AA8FF','#E1F0FF','#1F6CB6','#2F86D8'],
-     one:'北大同学的 AI 工具入门指南，发布 24 小时 100+ 收藏。',
+     one:'面向北京大学学生的 AI 工具入门指南，发布 24 小时内获得 100 余次收藏。',
      cover:`<div class="big lift">100<span class="pl">+</span></div><div class="bar"><i></i></div>`,
-     lead:'从账号注册、充值到稳定使用，一份写给北大同学的 AI 工具指南。',
-     chips:['独立完成','规划 · 前端 · 推广'],
-     why:'身边很多同学想用 AI 工具，却卡在注册、充值和稳定使用上，要花很多时间找教程，还可能碰上无良代充。',
-     flow:['规划内容','AI 辅助做页面与动效','统一视觉、测试交互','校内论坛发布','建立用户群'],
-     flowNote:'发布后 24 小时 100+ 收藏，2 至 3 天累计约 200，建立了 20+ 人的 QQ 群。',
+     lead:'一份涵盖账号注册、充值与稳定使用的 AI 工具入门指南。',
+     chips:['独立完成','规划 · 开发 · 推广'],
+     why:'许多同学希望使用 AI 工具，却在注册、充值与稳定使用等环节遇到困难，需要花费大量时间查找教程，并面临遭遇不良代充的风险。',
+     flow:['规划内容结构','借助 AI 完成页面与动效','校内论坛发布','建立用户交流群'],
+     flowNote:'发布后 24 小时内获得 100 余次收藏，两至三日累计约 200 次，并建立了 20 余人的用户交流群。',
      demo:`<div class="row"><div class="dstat"><div class="b"><strong><span data-count>100</span>+</strong><span style="font-weight:700;color:var(--ink-2)">校内论坛发布后 24 小时收藏</span><div class="meter"><i data-meter></i></div></div><div class="col"><div class="s"><strong>≈200</strong><span>2 至 3 天累计收藏</span></div><div class="s"><strong>20+</strong><span>人的 QQ 用户群</span></div></div></div></div>`,
      acts:`<a class="btn m sm" href="https://pkuwithiai.pages.dev" target="_blank" rel="noopener">打开 pkuwithiai.pages.dev ↗</a>`,
-     did:['独立负责产品规划、前端开发与发布推广','用 AI 辅助完成页面、动效及资源制作','统一视觉规范，测试交互体验'],
+     did:['独立负责产品规划、前端开发与发布推广','借助 AI 完成页面、动效及素材制作','制定统一视觉规范并完成交互测试'],
      facts:[['角色','独立完成'],['发布','北大校内论坛'],['链接','pkuwithiai.pages.dev']]},
     {id:'research',k:'research',name:'Research Pipeline',no:'05',sub:'定性研究自动化工具',m:['#2DC98A','#DCF8EA','#128A5E','#1AA571'],
-     one:'视频链接进去，编码好的表格出来。',
+     one:'输入视频链接，输出已完成定性编码的表格。',
      cover:`<div class="list lift"><div class="d"><i></i><span>贴入视频链接</span></div><div class="d"><i></i><span>Whisper 转写</span></div><div><i></i><span>GPT 定性编码</span></div><div><i></i><span>写入表格</span></div></div>`,
-     lead:'把视频材料的下载、转写、定性编码交给流水线，研究者只做最后的判断。',
-     chips:['独立完成','2024','已被老师复用'],
-     why:'老师的研究要整理大量视频材料，下载、转写、逐段编码都是重复劳动，花时间也容易出错。',
-     flow:['URL 输入','视频下载','并发 Whisper 转写','GPT 定性编码','写入 Google Sheets','人工复核'],
-     flowNote:'保留人工复核：AI 先编码，研究者集中检查结果。这个方案后来被老师用在了新的研究里。',
+     lead:'将视频材料的下载、转写与定性编码交由自动化流程完成，研究者专注于最终的判断与复核。',
+     chips:['独立完成','2024','已被导师复用'],
+     why:'导师的研究需要处理大量视频材料，下载、转写与逐段编码均为重复性工作，耗时且容易出错。',
+     flow:['批量下载视频','Whisper 并发转写','GPT 定性编码','写入 Google Sheets','人工复核'],
+     flowNote:'流程保留人工复核环节：AI 完成初步编码，研究者集中审核结果。该方案已被导师应用于后续研究。',
      demo:`<div class="row"><div class="todo"><div class="h">一次研究任务 <span data-todo-count>0 / 6</span></div><ol data-todo></ol></div></div>`,
-     did:['URL 输入与视频批量下载','并发 Whisper 转写','GPT 定性编码，结构化输出到 Google Sheets','保留人工复核环节'],
+     did:['实现视频链接输入与批量下载','实现 Whisper 并发转写','实现 GPT 定性编码，并将结果结构化输出至 Google Sheets'],
      facts:[['角色','独立完成'],['时间','2024'],['技术','Whisper · GPT · Sheets']]},
     {id:'chatmate',k:'chat',name:'Chatmate',no:'06',sub:'AI 英语聊天 App',m:['#FFC83D','#FFF4C7','#9A6A00','#E0A800','#2B2A4C'],live:1,
-     one:'和 AI 伙伴聊天学英语，点词即查，说错温柔纠正。',
+     one:'通过与 AI 伙伴对话学习英语，支持即点即查与纠错反馈。',
      cover:`<div class="ph lift"><img src="img/cm-main.webp" alt=""></div>`,
-     lead:'我自己的 App 设计：和不同性格的 AI 伙伴聊日常，点词即查，说错了温柔纠正，还能和外国语伴跨语言聊天。',
-     chips:['前端设计','手机 + 电脑','浅色 / 深色'],
-     why:'想把英语学习放进每天都会做的聊天里：遇到不会的词点一下，收进词本，之后在练习和对话里再遇见。',
-     flow:['聊天里点词即查','加入词本','拼写、听书跟写','每日小结'],
-     flowNote:'手机 12 页、电脑 5 页，浅色和深色两套主题，统一字体、配色、圆角和按压阴影。',
+     lead:'个人 App 设计项目。用户可与不同性格的 AI 伙伴进行日常对话，点击单词即可查询释义，表达有误时获得纠正，并可与外国语伴进行跨语言交流。',
+     chips:['前端设计','移动端与桌面端','浅色与深色主题'],
+     why:'将英语学习融入日常对话：遇到生词时点击查询并收入词本，之后在练习与对话中反复巩固。',
+     flow:['对话中点词查询','加入词本','拼写与听写练习','每日学习小结'],
+     flowNote:'移动端 12 个页面、桌面端 5 个页面，提供浅色与深色两套主题，并统一字体、配色与组件规范。',
      demo:`<div class="row">${browser('demos/chatmate/DesktopChat.dc.html',1440,900,'Chatmate · 电脑端','Chatmate','img/cm-desktopchat.webp')}${phone('demos/chatmate/Main.dc.html','Chatmate · 手机端','img/cm-main.webp',220)}</div>`,
-     acts:`<span class="hint">点黄色高亮的单词 · 左侧可切换页面 ✨</span>`,
+     acts:`<span class="hint">点击黄色高亮单词查看释义，左侧可切换页面</span>`,
      full:['demos/chatmate/DesktopChat.dc.html','Chatmate · 电脑端',0],
-     did:['手机端：聊天、渐进混合、情景、语音、拼写、阅读、小结、社区','电脑端：聊天、词本、阅读、社区、跨语言私聊','浅色与深色两套完整主题','统一的设计规范，后端由他人接手'],
+     did:['移动端：对话、情景练习、拼写、阅读、每日小结与社区','桌面端：对话、词本、阅读与跨语言私聊','建立统一设计规范，完成浅色与深色两套主题；后端由他人负责'],
      facts:[['角色','前端设计'],['页面','手机 12 · 电脑 5'],['状态','设计稿，可交互']]}
   ];
   const setM=(el,m)=>{ el.style.setProperty('--m',m[0]); el.style.setProperty('--m-soft',m[1]); el.style.setProperty('--m-ink',m[2]); el.style.setProperty('--m-edge',m[3]); el.style.setProperty('--m-on',m[4]||'#fff'); };
@@ -373,7 +426,7 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
     const b=document.createElement('button'); b.type='button'; b.className='card'; b.id='card-'+p.id; setM(b,p.m);
     b.innerHTML=`<div class="cover ${coverCls[p.k]}" aria-hidden="true">${p.cover}</div>
       <div class="body"><div class="row"><span class="ic">${IC[p.k]}</span><div><span class="no">${p.no} · ${p.sub}</span><h3>${p.name}</h3></div></div>
-      <p>${p.one}</p><div class="more">${p.live?'<span class="chip live"><i></i>可现场操作</span>':'<span class="chip">'+p.chips[0]+'</span>'}<span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div>`;
+      <p>${p.one}</p><div class="more">${p.live?'<span class="chip live"><i></i>可交互演示</span>':'<span class="chip">'+p.chips[0]+'</span>'}<span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></div>`;
     b.addEventListener('click',()=>open(i,b));
     grid.appendChild(b);
   });
@@ -382,6 +435,12 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
   const ov=document.getElementById('ov'), sheet=document.getElementById('sheet'), scroll=document.getElementById('scroll'), dTitle=document.getElementById('dTitle');
   let cur=-1, lastCard=null, timers=[];
   function scale(dv){ const s=dv.querySelector('.screen'), f=s.querySelector('iframe'); if(f) f.style.transform=`scale(${s.clientWidth/(+dv.dataset.w)})`; }
+  const storyHTML=(s)=>`<section class="d-story">
+      <div><h3>用户痛点</h3><div class="pains">${s.pains.map(x=>`<div class="pain"><span class="who">${x[0]}</span><b>${x[1]}</b><p>${x[2]}</p></div>`).join('')}</div></div>
+      <div><h3>技术难点与解决方案</h3><div class="hard">${s.hard.map(x=>`<div><span class="pb"><i></i>${x[0]}</span><span class="sv">${x[1]}</span></div>`).join('')}</div></div>
+      ${s.wf?`<div><h3>${s.wf.t}</h3><div class="wfbox"><ol class="wf">${s.wf.steps.map(x=>`<li>${x}</li>`).join('')}</ol><p class="fn">${s.wf.note}</p></div></div>`:''}
+      <div class="mg"><div><h3>能力迁移</h3><ul>${s.move.map(x=>`<li>${x}</li>`).join('')}</ul></div><div><h3>项目收获</h3><ul>${s.gain.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+    </section>`;
   function render(i){
     timers.forEach(clearInterval); timers=[];
     const p=P[i]; cur=i; setM(sheet,p.m);
@@ -389,12 +448,13 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
     const prev=P[(i+P.length-1)%P.length], next=P[(i+1)%P.length];
     scroll.innerHTML=`
       <section class="d-hero"><div class="no">${p.no} · ${p.sub}</div><h2>${p.name}</h2><p class="lead">${p.lead}</p>
-        <div class="chips">${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}${p.live?'<span class="chip live"><i></i>下方可直接操作</span>':''}</div></section>
+        <div class="chips">${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}${p.live?'<span class="chip live"><i></i>支持在线交互</span>':''}</div></section>
       <section class="d-demo">${p.demo}<div class="acts">${p.acts||''}${p.full?`<button class="btn m sm" type="button" data-full>${FS_ICON}全屏体验</button>`:''}</div></section>
-      <section class="d-why"><div class="q"><h3>出发点</h3><p>${p.why}</p></div>
+      <section class="d-why"><div class="q"><h3>项目背景</h3><p>${p.why}</p></div>
         <div class="flowbox"><h3>关键设计</h3><ol class="flow">${p.flow.map((f,k)=>`<li style="--d:${k*90}ms"><b>${k+1}</b><span>${f}</span></li>`).join('')}</ol><p class="fn">${p.flowNote}</p></div></section>
-      <section class="d-body"><div><h3>我做的</h3><ol class="did">${p.did.map((d,k)=>`<li><b>${k+1}</b><span>${d}</span></li>`).join('')}</ol></div>
-        <dl class="facts"><h3 style="margin-bottom:4px">信息</h3>${p.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('')}</dl></section>
+      ${p.story?storyHTML(p.story):''}
+      <section class="d-body"><div><h3>主要工作</h3><ol class="did">${p.did.map((d,k)=>`<li><b>${k+1}</b><span>${d}</span></li>`).join('')}</ol></div>
+        <dl class="facts"><h3 style="margin-bottom:4px">项目信息</h3>${p.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('')}</dl></section>
       <div class="nextbar"><button type="button" data-go="${(i+P.length-1)%P.length}"><small>← 上一个</small><b>${prev.name}</b></button><button class="r" type="button" data-go="${(i+1)%P.length}"><small>下一个 →</small><b>${next.name}</b></button></div>`;
     scroll.scrollTop=0;
     // live screens
@@ -413,7 +473,7 @@ footer{padding:28px 0 48px;text-align:center;font:700 13px var(--f-body);color:v
     if(cn){ requestAnimationFrame(()=>mt.style.width='100%'); if(!reduce){ const t0=performance.now(); (function s(t){ const q=Math.min(1,(t-t0)/1300); cn.textContent=Math.round(100*(1-Math.pow(1-q,3))); if(q<1&&cur===i) requestAnimationFrame(s); })(t0); } }
     // todo
     const ol=scroll.querySelector('[data-todo]');
-    if(ol){ const steps=['贴入一批视频链接','自动下载视频','Whisper 并发转写','GPT 定性编码','写入 Google Sheets','研究者复核'];
+    if(ol){ const steps=['输入视频链接','自动下载视频','Whisper 并发转写','GPT 定性编码','写入 Google Sheets','研究者复核'];
       ol.innerHTML=steps.map(s=>`<li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="tx">${s}</span></li>`).join('');
       const items=[...ol.children], cnt=scroll.querySelector('[data-todo-count]'); let k=0;
       const tick=()=>{ items.forEach((li,j)=>{ li.classList.toggle('done',j<k); li.classList.toggle('now',j===k); }); cnt.textContent=Math.min(k,6)+' / 6'; k=k>7?0:k+1; };

@@ -1,0 +1,203 @@
+/* TT next: guided discovery, context tips, incremental garden.
+   Built on the Candy tokens in app.css; no new palette. */
+
+/* ---------- Discovery layer (top layer when the browser supports popover) */
+.dc-layer { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; overflow: visible; pointer-events: none; z-index: 2147483000; color: var(--ink); }
+.dc-layer:not([popover]) { display: block; }
+.dc-layer [hidden] { display: none !important; }
+
+/* Glow: a soft lemon ring with a light band sweeping across, on a loop. */
+.dc-glow { position: fixed; border-radius: 18px; pointer-events: none; transition: left .2s, top .2s, width .2s, height .2s; }
+.dc-glow.is-tight { border-radius: 999px; }
+.dc-ring { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; box-shadow: 0 0 0 2.5px var(--lemon), 0 0 0 7px rgba(255, 212, 59, .28), 0 0 22px 6px rgba(255, 200, 61, .45); animation: dc-breathe 2.4s ease-in-out infinite; }
+.dc-ring::after { content: ""; position: absolute; top: -30%; bottom: -30%; left: -70%; width: 45%; background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .0) 15%, rgba(255, 255, 255, .85) 50%, rgba(255, 255, 255, 0) 85%, transparent 100%); transform: skewX(-20deg); mix-blend-mode: soft-light; animation: dc-shine 2.6s cubic-bezier(.45, .05, .35, 1) infinite; }
+.dc-glow-label { pointer-events: auto; position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(calc(-50% + var(--lx, 0px))); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 6px 12px 6px 9px; border: 0; border-radius: 999px; background: var(--lemon); color: #2b2a4c; font: 800 12.5px/1.2 var(--font-sans); box-shadow: 0 0 0 1.5px #e8b90f, 0 4px 0 #e8b90f, 0 10px 22px rgba(232, 185, 15, .35); cursor: pointer; animation: dc-bob 2.4s ease-in-out infinite; }
+.dc-glow-label svg { width: 15px; height: 15px; }
+.dc-glow-label::after { content: ""; position: absolute; left: calc(50% - var(--lx, 0px)); top: 100%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--lemon); }
+.dc-glow[data-side="below"] .dc-glow-label { bottom: auto; top: calc(100% + 12px); }
+.dc-glow[data-side="below"] .dc-glow-label::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: var(--lemon); }
+.dc-glow-label:focus-visible { outline: 3px solid var(--pine); outline-offset: 3px; }
+@keyframes dc-shine { 0% { left: -70%; } 55%, 100% { left: 130%; } }
+@keyframes dc-breathe { 0%, 100% { box-shadow: 0 0 0 2.5px var(--lemon), 0 0 0 6px rgba(255, 212, 59, .22), 0 0 16px 4px rgba(255, 200, 61, .35); } 50% { box-shadow: 0 0 0 2.5px var(--lemon), 0 0 0 10px rgba(255, 212, 59, .18), 0 0 28px 10px rgba(255, 200, 61, .5); } }
+@keyframes dc-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+
+/* Spotlight for the current tutorial step. Clicks pass through to the page. */
+.dc-spot { position: fixed; border-radius: 16px; pointer-events: none; box-shadow: 0 0 0 3px var(--lemon), 0 0 0 9999px rgba(27, 24, 56, .42); transition: left .25s, top .25s, width .25s, height .25s; }
+
+/* Tutorial card */
+.dc-card { position: fixed; pointer-events: auto; padding: 14px 16px 12px; border-radius: 20px; background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1.5px var(--card-line), 0 5px 0 var(--card-edge), 0 18px 40px rgba(27, 24, 56, .22); transition: left .2s, top .2s; }
+.dc-card p { margin: 8px 0 0; font-size: 14px; line-height: 1.6; }
+.dc-card strong { color: var(--pine); }
+.dc-card .dc-sub { color: var(--ink-3); font-size: 12.5px; margin-top: 4px; }
+.dc-card::before { content: ""; position: absolute; left: var(--arrow, 50%); margin-left: -8px; border: 8px solid transparent; display: none; }
+.dc-card[data-side="below"]::before { display: block; bottom: 100%; border-bottom-color: var(--surface); }
+.dc-card[data-side="above"]::before { display: block; top: 100%; border-top-color: var(--surface); }
+.dc-card-head { display: flex; align-items: center; gap: 10px; }
+.dc-card-head > div { flex: 1; min-width: 0; display: grid; }
+.dc-card-head small { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: var(--ink-3); }
+.dc-card-head b { font-size: 15px; }
+.dc-x { margin-right: -6px; }
+.dc-dots { display: flex; gap: 5px; margin-top: 10px; }
+.dc-dots i { width: 18px; height: 5px; border-radius: 3px; background: var(--line-strong); }
+.dc-dots i.is-done { background: var(--mint); }
+.dc-dots i.is-now { background: var(--lemon); width: 28px; }
+.dc-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+/* Medals: locked → practising (dashed) → lit */
+.dc-medal { --mc: var(--pine); flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: var(--ink-3); background: var(--surface-sunken); box-shadow: inset 0 0 0 2px var(--line); }
+.dc-medal svg { width: 18px; height: 18px; }
+.dc-medal.lg { width: 50px; height: 50px; }
+.dc-medal.lg svg { width: 24px; height: 24px; }
+.dc-medal.is-half { color: var(--mc); background: color-mix(in srgb, var(--mc) 12%, var(--surface)); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--mc) 55%, transparent); outline: 2px dashed color-mix(in srgb, var(--mc) 60%, transparent); outline-offset: 2px; }
+.dc-medal.is-on { color: #fff; background: var(--mc); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .14), 0 0 0 3px var(--lemon-soft), 0 0 0 4.5px var(--lemon); }
+.dc-card-head .dc-medal:not(.is-on):not(.is-half) { color: var(--mc); background: color-mix(in srgb, var(--mc) 14%, var(--surface)); box-shadow: none; }
+
+/* Achievement toast: a dark game-style card so it reads as a reward. */
+.dc-banner { pointer-events: auto; position: fixed; top: calc(var(--demo-banner-h, 0px) + 16px); right: 20px; width: min(360px, calc(100vw - 24px)); display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #24223f; color: #fff; box-shadow: 0 0 0 2px #ffd43b, 0 6px 0 #171530, 0 18px 40px rgba(23, 21, 48, .4); animation: dc-in .5s cubic-bezier(.2, 1.4, .4, 1); }
+.dc-banner.leaving { animation: dc-out .4s ease-in forwards; }
+.dc-banner > div { flex: 1; min-width: 0; display: grid; gap: 1px; }
+.dc-banner small { color: #ffd43b; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.dc-banner b { font-size: 16px; }
+.dc-banner span:not(.dc-medal) { font-size: 12.5px; color: #c9c5ea; line-height: 1.45; }
+.dc-banner .dc-medal.is-on { box-shadow: 0 0 0 3px #3a3762, 0 0 0 5px #ffd43b, 0 0 20px 4px rgba(255, 212, 59, .55); animation: dc-pop .7s .15s cubic-bezier(.2, 1.6, .4, 1) both; }
+.dc-banner-link { border: 0; background: rgba(255, 255, 255, .1); color: #fff; border-radius: 10px; padding: 6px 9px; font: 700 12px var(--font-sans); cursor: pointer; white-space: nowrap; }
+@keyframes dc-in { from { transform: translateY(-14px) scale(.96); opacity: 0; } }
+@keyframes dc-out { to { transform: translateY(-10px); opacity: 0; } }
+@keyframes dc-pop { from { transform: scale(.3) rotate(-30deg); } }
+@media (max-width: 719px) { .dc-banner { right: 12px; left: 12px; width: auto; } }
+
+/* Skill map overlay */
+.dc-map { display: grid; gap: 16px; }
+.dc-map-head p { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); }
+.dc-map-head b { font-size: 18px; color: var(--ink); }
+.dc-map-meter { height: 10px; border-radius: 6px; background: var(--surface-sunken); box-shadow: inset 0 0 0 1.5px var(--line); overflow: hidden; }
+.dc-map-meter i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--lemon), var(--mint)); }
+.dc-path { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; position: relative; }
+.dc-path::before { content: ""; position: absolute; left: 49px; top: 30px; bottom: 30px; width: 3px; border-radius: 2px; background: repeating-linear-gradient(var(--line-strong) 0 8px, transparent 8px 14px); }
+.dc-node { position: relative; display: grid; grid-template-columns: 20px 50px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 18px; background: var(--surface); box-shadow: 0 0 0 1.5px var(--card-line), 0 3px 0 var(--card-edge); }
+.dc-node.is-learned { background: color-mix(in srgb, var(--lemon-soft) 55%, var(--surface)); }
+.dc-step { font: 800 12px var(--font-round); color: var(--ink-3); text-align: center; }
+.dc-node-copy { min-width: 0; display: grid; gap: 1px; }
+.dc-node-copy b { font-size: 15px; }
+.dc-node-copy small { font-size: 12.5px; color: var(--ink-2); }
+.dc-node-copy em { font-style: normal; font-size: 11.5px; font-weight: 700; color: var(--ink-3); }
+.dc-node.is-learned em { color: var(--mint-ink); }
+.dc-node.is-practice em { color: var(--pine); }
+@media (max-width: 560px) { .dc-node { grid-template-columns: 50px minmax(0, 1fr); } .dc-step { display: none; } .dc-node .btn { grid-column: 1 / -1; justify-self: start; } .dc-path::before { left: 37px; } }
+.dc-funnel { border-radius: 16px; background: var(--surface-sunken); padding: 10px 14px; }
+.dc-funnel summary { cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13.5px; }
+.dc-funnel summary svg { width: 16px; height: 16px; }
+.dc-funnel summary small { font-weight: 600; color: var(--ink-3); }
+.dc-funnel .tblw { overflow-x: auto; margin-top: 10px; }
+.dc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.dc-table th, .dc-table td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.dc-table th:first-child, .dc-table td:first-child { text-align: left; }
+.dc-table th { color: var(--ink-3); font-weight: 700; }
+.dc-switch { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer; }
+.dc-switch input { width: 18px; height: 18px; accent-color: var(--pine); }
+
+/* Skill strip in 成长 overview */
+.dc-strip { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.dc-strip li { display: grid; justify-items: center; gap: 4px; text-align: center; }
+.dc-strip small { font-size: 10.5px; color: var(--ink-3); line-height: 1.25; }
+.dc-next { margin-top: 14px; width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 10px 12px; border: 0; border-radius: 16px; background: var(--surface-sunken); box-shadow: inset 0 0 0 1.5px var(--line); color: var(--ink); cursor: pointer; font: inherit; }
+.dc-next > span:not(.dc-medal) { flex: 1; min-width: 0; display: grid; }
+.dc-next b { font-size: 14px; }
+.dc-next small { font-size: 12px; color: var(--ink-2); }
+.dc-next:hover { box-shadow: inset 0 0 0 1.5px var(--pine); }
+@media (max-width: 420px) { .dc-strip small { display: none; } }
+
+/* ---------- Context tips inside an AI proposal */
+.asst-tips { margin-top: 10px; padding: 10px 12px; border-radius: 16px; background: var(--lemon-soft); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--lemon-edge) 45%, transparent); }
+.asst-tips-head { margin: 0 0 6px; display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.asst-tips-head svg { width: 16px; height: 16px; color: var(--gold); }
+.asst-tips-head small { margin-left: auto; font-size: 11px; color: var(--ink-3); font-weight: 600; }
+.asst-tips ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.asst-tip { width: 100%; display: flex; align-items: center; gap: 9px; padding: 6px 6px; border: 0; border-radius: 10px; background: transparent; color: var(--ink); text-align: left; font: inherit; font-size: 13px; cursor: pointer; }
+.asst-tip:hover { background: rgba(255, 255, 255, .55); }
+.asst-tip-box { flex: none; width: 20px; height: 20px; border-radius: 7px; display: grid; place-items: center; background: var(--surface); box-shadow: inset 0 0 0 2px var(--line-strong); color: transparent; }
+.asst-tip-box svg { width: 14px; height: 14px; }
+.asst-tip[aria-pressed="true"] .asst-tip-box { background: var(--gold); box-shadow: none; color: #fff; }
+.asst-tip[aria-pressed="false"] .asst-tip-text { color: var(--ink-3); text-decoration: line-through; }
+.asst-tip-text { flex: 1; min-width: 0; line-height: 1.45; }
+.asst-tip small { flex: none; font-size: 11px; color: var(--ink-3); }
+.asst-clarify .chip-btn svg { width: 15px; height: 15px; }
+
+/* ---------- Incremental garden */
+.g-tally { display: grid; gap: 10px; margin-bottom: 12px; }
+.g-tally.is-mini { margin: 4px 0 6px; }
+.g-welcome { margin: 0; display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 14px; background: var(--c-growth-soft); color: var(--c-growth-ink); font-weight: 700; font-size: 13.5px; }
+.g-welcome svg { width: 16px; height: 16px; }
+.g-counts { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px 16px; }
+.g-count { display: inline-flex; align-items: baseline; gap: 5px; }
+.g-count img { width: 18px; height: 22px; object-fit: contain; align-self: center; }
+.g-count b { font: 800 22px/1 var(--font-round); }
+.g-count small { font-size: 12px; color: var(--ink-3); font-weight: 700; }
+.g-count.is-total { margin-right: auto; }
+@media (max-width: 719px) { .g-tally:not(.is-mini) .g-count.is-total { flex-basis: 100%; } }
+.g-count.is-total b { font-size: 38px; color: var(--c-growth-ink); letter-spacing: -.02em; }
+.g-tally.is-mini .g-count.is-total b { font-size: 26px; }
+.g-tally.is-mini .g-count b { font-size: 16px; }
+.g-tally.is-growing .g-count.is-total b { animation: g-bump .9s cubic-bezier(.2, 1.6, .4, 1); display: inline-block; }
+@keyframes g-bump { 0% { transform: scale(1); } 30% { transform: scale(1.35); color: var(--gold); } 100% { transform: scale(1); } }
+.g-milestone { display: grid; gap: 6px; }
+.g-milestone-copy { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; }
+.g-milestone-copy span { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; }
+.g-milestone-copy span svg { width: 15px; height: 15px; color: var(--gold); }
+.g-milestone-copy b { color: var(--c-growth-ink); font-size: 15px; }
+.g-milestone-copy small { font-size: 12px; color: var(--ink-3); }
+.g-milestone-bar { display: block; height: 10px; border-radius: 6px; background: var(--surface-sunken); box-shadow: inset 0 0 0 1.5px var(--line); overflow: hidden; }
+.g-milestone-bar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--c-growth), var(--lemon)); position: relative; overflow: hidden; }
+.g-milestone-bar i::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .6) 50%, transparent 70%); animation: g-sheen 2.8s ease-in-out infinite; }
+@keyframes g-sheen { from { transform: translateX(-100%); } 60%, to { transform: translateX(100%); } }
+.g-milestone-done { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--c-growth-ink); }
+.g-rules h2 { font-size: 16px; }
+.g-rule-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.g-rule-list > li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+.g-rule-list > li > svg { width: 18px; height: 18px; color: var(--c-growth-ink); margin-top: 1px; }
+.g-rule-list b { color: var(--ink); display: block; }
+.g-cats { display: flex; flex-wrap: wrap; gap: 4px 6px; margin-top: 5px; }
+.g-cat { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px 2px 4px; border-radius: 99px; background: var(--surface-sunken); font-size: 12px; font-weight: 700; color: var(--ink); }
+.g-cat img { width: 14px; height: 13px; }
+.g-mile-title { margin: 16px 0 8px; font-size: 13px; color: var(--ink-3); letter-spacing: .06em; }
+.g-miles { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.g-miles li { display: grid; grid-template-columns: 38px minmax(0, 1fr) 18px; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 12px; background: var(--surface-sunken); color: var(--ink-3); }
+.g-miles li.is-on { background: var(--c-growth-soft); color: var(--ink); }
+.g-miles li > svg { width: 16px; height: 16px; }
+.g-miles li.is-on > svg { color: var(--c-growth-ink); }
+.g-mile-at { font: 800 15px var(--font-round); text-align: center; }
+.g-miles li > span:nth-child(2) { display: grid; }
+.g-miles b { font-size: 13px; }
+.g-miles small { font-size: 11.5px; }
+
+/* Milestone decorations on the island (original vector art) */
+.island-svg .g-fly { animation: g-float 5.5s ease-in-out infinite; animation-delay: calc(var(--d) * -1); transform-box: fill-box; }
+.island-svg .g-wings { transform-box: fill-box; transform-origin: center; animation: g-flap .35s ease-in-out infinite alternate; }
+.island-svg .g-bird { animation: g-glide 4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.island-svg .g-glow { animation: g-lamp 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.island-svg .g-boat { animation: g-rock 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes g-float { 0%, 100% { translate: 0 0; } 25% { translate: 14px -10px; } 50% { translate: 26px 2px; } 75% { translate: 10px 8px; } }
+@keyframes g-flap { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+@keyframes g-glide { 0%, 100% { translate: 0 0; } 50% { translate: 10px -5px; } }
+@keyframes g-lamp { 0%, 100% { opacity: .25; transform: scale(.9); } 50% { opacity: .55; transform: scale(1.2); } }
+@keyframes g-rock { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+
+/* +1 flying to 成长 */
+.juice { position: fixed; z-index: 2147482000; pointer-events: none; display: inline-flex; align-items: center; gap: 2px; padding: 3px 8px 3px 4px; border-radius: 99px; background: var(--surface); box-shadow: 0 0 0 2px var(--c-growth), 0 6px 16px rgba(77, 143, 28, .3); font: 800 13px var(--font-round); color: var(--c-growth-ink); }
+.juice img { width: 18px; height: 17px; }
+.juice-pulse { animation: juice-pulse .7s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes juice-pulse { 40% { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(124, 207, 63, .35); } }
+.rail-item.mod-growth .rail-badge { background: var(--c-growth); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dc-ring, .dc-ring::after, .dc-glow-label, .dc-banner, .dc-banner .dc-medal.is-on, .g-milestone-bar i::after,
+  .island-svg .g-fly, .island-svg .g-wings, .island-svg .g-bird, .island-svg .g-glow, .island-svg .g-boat, .g-tally.is-growing .g-count.is-total b { animation: none !important; }
+  .dc-ring::after { display: none; }
+}
+
+/* Today with the assistant docked: the main column gets narrow, so stack the
+   side cards under the lists instead of letting the two columns overlap. */
+@media (max-width: 1499px) {
+  .app.has-assistant .today-grid.is-split { grid-template-columns: minmax(0, 1fr); }
+  .app.has-assistant .today-side { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: start; }
+}

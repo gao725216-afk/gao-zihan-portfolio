@@ -24,6 +24,10 @@ export function createApp({user, doc, sync}) {
   const overlays = createOverlays(() => store.get());
   const toast = createToasts();
   const views = new Map(), handlers = new Map(), afterRender = new Set();
+  // Observers for guided discovery: committed data changes, dispatched actions
+  // and named product signals (e.g. an AI proposal was confirmed).
+  const commitWatchers = new Set(), actionWatchers = new Set(), signalWatchers = new Set();
+  const notifyAll = (set, ...args) => { for (const fn of set) { try { fn(...args); } catch (error) { console.error(error); } } };
   let root = null, renderShell = null;
 
   const app = {
@@ -35,6 +39,10 @@ export function createApp({user, doc, sync}) {
     views,
     on(name, handler) { handlers.set(name, handler); },
     onRender(fn) { afterRender.add(fn); return () => afterRender.delete(fn); },
+    onCommit(fn) { commitWatchers.add(fn); return () => commitWatchers.delete(fn); },
+    onAction(fn) { actionWatchers.add(fn); return () => actionWatchers.delete(fn); },
+    onSignal(fn) { signalWatchers.add(fn); return () => signalWatchers.delete(fn); },
+    signal(name, detail) { notifyAll(signalWatchers, name, detail); },
     ui(feature) { return store.get().ui[feature] || {}; },
     setUi(feature, patch) {
       store.set('ui', ui => ({...ui, [feature]: {...(ui[feature] || {}), ...(typeof patch === 'function' ? patch(ui[feature] || {}) : patch)}}));
@@ -59,13 +67,15 @@ export function createApp({user, doc, sync}) {
         openConflict();
         throw Object.assign(new Error('请先处理同步冲突。'), {handled: true});
       }
-      const draft = clone(store.get().doc);
+      const before = store.get().doc;
+      const draft = clone(before);
       const result = mutator(draft);
       const problems = occur.validateSchedule(draft.schedule);
       if (problems.length) throw new Error(problems[0].errors[0]);
       gardenWorld.reconcile(draft.progress);
       store.replace('doc', draft);
       sync.changed(draft);
+      notifyAll(commitWatchers, before, draft);
       if (message && !quiet) toast(message, {tone, detail, iconName, action: undo ? {label: '撤销', run: () => safely(undo)} : null});
       return result;
     },
@@ -87,6 +97,7 @@ export function createApp({user, doc, sync}) {
     if (!handler) { console.warn('No handler for', name); return; }
     const result = safely(() => handler(el, event, app));
     if (result && typeof result.catch === 'function') result.catch(error => { if (!error?.handled) toast(error?.message || '操作未完成，请重试。', {tone: 'error'}); });
+    notifyAll(actionWatchers, name, el);
   }
   document.addEventListener('click', event => {
     const el = event.target.closest?.('[data-act]');

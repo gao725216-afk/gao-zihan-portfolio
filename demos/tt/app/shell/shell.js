@@ -4,13 +4,19 @@ import {html, raw, attr, cx} from '../lib/html.js';
 import {icon} from '../lib/icons.js';
 import {frame} from './overlays.js';
 import {companionAvatar} from '../features/companion.js';
+import {gardenWorld} from '../core.js';
+
+// Materials waiting to be placed in the current garden scene.
+function gardenWaiting(state) {
+  try { const first = gardenWorld.view(state.doc.progress, 0); const n = gardenWorld.view(state.doc.progress, first.unlocked - 1).inventory.length; return n || ''; } catch { return ''; }
+}
 
 export const NAV = [
   {view: 'today', label: '今天', icon: 'today'},
   {view: 'calendar', label: '日历', icon: 'calendar'},
   {view: 'tasks', label: '任务', icon: 'tasks'},
   {view: 'focus', label: '专注', icon: 'focus'},
-  {view: 'growth', label: '成长', icon: 'growth'},
+  {view: 'growth', label: '成长', icon: 'growth', badge: gardenWaiting},
   {view: 'notes', label: '笔记', icon: 'notes'},
 ];
 const MARKS = {today: 'today', calendar: 'calendar', tasks: 'tasks', focus: 'focus', growth: 'growth', notes: 'notes', period: 'period', settings: 'settings'};

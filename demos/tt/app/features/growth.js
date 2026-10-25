@@ -25,10 +25,10 @@ export function registerGrowth(app) {
     return html`<section class="growth-hero">
   <div class="gh-ring">${ring(week / goal, 132)}<div class="gh-ring-copy"><b class="num">${week}</b><span>/ ${goal} 项</span></div></div>
   <div class="gh-copy">
-    <h2>${week >= goal ? '本周目标达成啦！' : '本周还差 ' + (goal - week) + ' 项'}</h2>
-    <p class="small">完成日程或待办都会计入，撤销完成会一起扣除。</p>
+    <h2>${week >= goal ? '本周目标达成啦！' : '本周已完成 ' + week + ' 项'}</h2>
+    <p class="small">只积累，不惩罚：几天没来也没关系，做过的事都还在。</p>
     <div class="gh-stats">
-      <span class="stat"><b>${streak}</b>天连续完成</span>
+      <span class="stat"><b>${progress.records.length}</b>项累计完成</span>
       <span class="stat"><b>Lv.${level}</b><i class="gh-level"><i style="${'width:' + Math.round(levelRatio * 100) + '%'}"></i></i>${xp} XP</span>
     </div>
     <button type="button" class="btn btn-quiet btn-sm" data-act="growth.goal">${icon('flag')}调整每周目标</button>
@@ -125,7 +125,7 @@ ${plannedSummary(state, bounds, u)}`;
       else if (tab === 'hours') body = hours(state);
       else body = html`<div class="growth-grid">
   <div class="growth-col">${hero(state)}${weekChart(state)}${records(state)}</div>
-  <div class="growth-col">${app.getView('garden').preview(state)}${badges(state)}${moments(state)}</div>
+  <div class="growth-col">${app.getView('garden').preview(state)}${app.getView('discovery').card(state)}${moments(state)}</div>
 </div>`;
       return {title: '成长', subtitle: state.layout.compact ? '' : '每一份积累，都来自演示中完成的事', body: html`<div class="${'growth tab-' + tab}">${tabs}${body}</div>`};
     },
