@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {TODAY,CHANNELS,dailyEvents,eventsBetween,summarize,resolveRange,previousRange,trendBuckets,sourceRows,pageRanks,toggleMetric,validDate} from '../src/analytics.js';
+let passed=0;
+function test(name,fn){fn();console.log(`PASS ${++passed} ${name}`);}
+const day=resolveRange('day'),week=resolveRange('week'),month=resolveRange('month');
+const ev=eventsBetween(TODAY,TODAY),s=summarize(ev);
+test('重复访问按人去重，浏览和人数分离',()=>{assert.ok(ev.length>s.visitors);assert.equal(s.visitors,new Set(ev.map(x=>x.id)).size);assert.ok(s.pv>s.visitors);});
+test('订单数和下单人数分离',()=>{assert.ok(s.orders>s.orderers);assert.ok(s.paidOrders>=s.payers);});
+test('支付人数不大于下单人数，均为访问人群子集',()=>{assert.ok(s.payers<=s.orderers&&s.orderers<=s.visitors);});
+test('三条漏斗转化率采用正确人数分母',()=>{assert.equal(s.orderRate,s.orderers/s.visitors*100);assert.equal(s.payOrderRate,s.payers/s.orderers*100);assert.equal(s.payRate,s.payers/s.visitors*100);});
+test('金额以整数分事件累计后换算元',()=>{assert.equal(s.payAmount,ev.reduce((n,x)=>n+x.payCents,0)/100);assert.equal(s.orderAmount,ev.reduce((n,x)=>n+x.orderCents,0)/100);assert.equal(s.aov,s.payAmount/s.payers);});
+test('新访客计数去重且不多于总访客',()=>{assert.equal(s.newVisitors,new Set(ev.filter(x=>x.new).map(x=>x.id)).size);assert.ok(s.newVisitors<=s.visitors);});
+test('渠道过滤真正改变人数与金额',()=>{const a=summarize(eventsBetween(TODAY,TODAY,'H5')),b=summarize(eventsBetween(TODAY,TODAY,'小程序'));assert.notDeepEqual(a,b);assert.ok(a.visitors<s.visitors&&b.visitors<s.visitors);});
+test('7天范围包含7个自然日且按区间去重',()=>{const r=resolveRange('7');assert.equal((Date.parse(r.end)-Date.parse(r.start))/86400000,6);const es=eventsBetween(r.start,r.end);assert.ok(summarize(es).visitors<es.length);assert.notEqual(summarize(es).visitors,s.visitors);});
+test('自然周周一开始，未来天数截断到演示今日',()=>{assert.equal(week.start,'2027-05-17');assert.equal(week.end,TODAY);});
+test('自然月从1日开始',()=>{assert.equal(month.start,'2027-05-01');assert.equal(month.end,TODAY);});
+test('同长度前期范围不重叠',()=>{assert.deepEqual(previousRange({start:'2027-05-16',end:'2027-05-22'}),{start:'2027-05-09',end:'2027-05-15'});});
+test('自然日31点、周13点、月12点',()=>{assert.equal(trendBuckets('day',day,'全部').length,31);assert.equal(trendBuckets('week',week,'全部').length,13);assert.equal(trendBuckets('month',month,'全部').length,12);});
+test('来源总计与渠道去重汇总相同',()=>{for(const channel of ['H5','小程序']){const rows=sourceRows(day,channel);assert.equal(rows[0].visitors,summarize(eventsBetween(TODAY,TODAY,channel)).visitors);assert.ok(rows[0].children.length>0);}});
+test('来源明细金额不会重复归属',()=>{const rows=sourceRows(resolveRange('7'),'H5');assert.equal(rows[0].children.reduce((n,x)=>n+x.payAmount,0),rows[0].payAmount);});
+test('来源明细趋势使用真实合成事件过滤',()=>{const r=sourceRows(day,'H5')[0].children[0];assert.equal(trendBuckets('day',day,'H5',e=>e.source===r.label).at(-1).visitors,r.visitors);});
+test('趋势最多选2项并至少保留1项',()=>{assert.deepEqual(toggleMetric(['visitors','pv'],'payers',2),['visitors','pv']);assert.deepEqual(toggleMetric(['visitors'],'visitors',2),['visitors']);assert.deepEqual(toggleMetric(['visitors','pv'],'pv',2),['visitors']);});
+test('来源最多选择5项',()=>{assert.equal(toggleMetric(['visitors','pv','newVisitors','depth','cart'],'payers',5).length,5);});
+test('空数据不会产生NaN/Infinity或虚构转化率',()=>{assert.ok(Object.values(summarize([])).every(x=>x===0));assert.deepEqual(eventsBetween('2027-05-23','2027-05-22'),[]);});
+test('日期拒绝非法值及溢出日期',()=>{assert.equal(validDate('2027-02-30'),false);assert.equal(validDate('nope'),false);assert.equal(validDate(TODAY),true);});
+test('页面排行由访客集合计算且不超过全店人数',()=>{for(const x of [...pageRanks(day).pages,...pageRanks(day).products])assert.ok(Number.isInteger(x.visitors)&&x.visitors>=0&&x.visitors<=s.visitors);});
+test('所有终端渠道均来自约定分类，未使用真实用户信息',()=>{assert.ok(ev.every(x=>CHANNELS.includes(x.channel)||x.channel==='其他'));assert.ok(ev.every(x=>!('phone' in x)&&!('name' in x)));});
+console.log(`\n${passed} analytics checks passed.`);
